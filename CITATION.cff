@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use the CLAD study materials, please cite the dissertation and dataset."
+title: "Community Life & Adolescent Development (CLAD)"
+abstract: >-
+  Study resources, analysis code, and the clad-glimmer research-object graph for the
+  Community Life & Adolescent Development study (NIJ 2016-R2-CX-0019, Wave-4/Visit-7),
+  the empirical basis for the PhD dissertation "Adolescent Neurocognitive Maturity
+  Mediates Paths to Altered Social Norms & Vulnerability in Emerging Adulthood".
+type: dataset
+authors:
+  - family-names: "El Damaty"
+    given-names: "Shady"
+  - family-names: "VanMeter"
+    given-names: "John W."
+  - family-names: "Fishbein"
+    given-names: "Diana H."
+license: CC-BY-4.0
+repository-code: "https://github.com/NeuroYouths/community-life-adolescent-development"
+references:
+  - type: article
+    title: "Introducing an Adolescent Cognitive Maturity Index"
+    authors:
+      - family-names: "El Damaty"
+        given-names: "Shady"
+    doi: "10.3389/fpsyg.2022.1017317"
+    year: 2022
+    journal: "Frontiers in Psychology"
