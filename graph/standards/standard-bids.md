@@ -4,12 +4,12 @@ type: standard
 name: "Brain Imaging Data Structure (BIDS)"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:5535b0c5b3b90aa01e672e5094092bd97a9e3e1bf17274529b38afac700e18af
+provenance-hash: sha256:4398d9c99850d14826317a0df726df7e2cb2ef86abde59295bea5f5fea47a075
 standard-class: "spec"
 version: "1.9.0"
-upstream-url: "https://bids.neuroimaging.io"
 edges:
   - {type: in-program, target: program-clad}
+  - {type: cross-project, target: "ads-glimmer:standard-bids", role: inherited-from-parent}
 description: |
-  The de-identified imaging is organized to BIDS.
+  De-identified imaging organized to BIDS.
 ---

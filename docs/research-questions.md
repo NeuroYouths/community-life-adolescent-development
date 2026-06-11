@@ -62,8 +62,10 @@ Analysis: `code/analyses/violence-cascade/` → `data/derivatives/violence-casca
 ### RQ3 — Multimodal striatal parcellation · `concept-striatal-development`
 Masked group-ICA functional parcellation of the striatum + split-half reproducibility, **fused with
 seed-based diffusion connectivity**; recovers BOTH limbic (emotion) and associative (control) parcels;
-relate medial-caudate↔prefrontal connectivity to outcomes. **Output: `eldamaty2020c` / OHBM·CCN·FLUX — draft.**
-Analysis: `code/analyses/striatal-parcellation-multimodal/` → `data/derivatives/striatal-multimodal-parcels/`.
+relate medial-caudate↔prefrontal connectivity to outcomes. **Note: the parcellation was performed on
+WAVES 1–3** (parent-canonical in ADS); **Wave-4 was incomplete and on a different scanner**, so the CLAD
+question is *validating and transferring* the W1–3 parcels to W4 (see RQ7). **Output: `eldamaty2020c` /
+OHBM·CCN·FLUX — draft.** Analysis: `code/analyses/striatal-parcellation-multimodal/` → `data/derivatives/striatal-multimodal-parcels/`.
 
 ### RQ4 — EFR → EmoFilm synchrony (emotion-axis bridge) · `concept-emofilm-synchrony`
 Individual EFR-latent deviation from the population predicts **intersubject synchrony (ISC)** during
@@ -76,11 +78,31 @@ activation and functional/structural connectivity. Analysis: `code/analyses/gono
 `data/derivatives/gonogo-frontostriatal/`.
 
 ### Secondary — EmoFilm → Wave-4 violence outcome · `concept-emofilm-violence`
-Prospective prediction of Wave-4 violence/substance outcomes from EmoFilm emotion-network response
-(cross-links to `concept-emofilm-violence-outcome` in ads-glimmer-graph).
+Prospective prediction of Wave-4 violence/substance outcomes (DUSI-VP) from W4 EmoFilm emotion-network
+response (parent-canonical `concept-emofilm-violence-outcome` in ads-glimmer-graph).
 Analysis/output: `code/analyses/emofilm-violence/` → `data/derivatives/emofilm-violence/`.
 
+### RQ6 — Validate W1–3 analytic choices · `concept-w13-analytic-validation` *(methodological)*
+Validate the W1–3 denoising / ICA model-order / parcellation / template choices and their robustness
+(multiverse) before forward application to Wave-4.
+
+### RQ7 — W1–3 vs Wave-4 scanner harmonization · `concept-scanner-harmonization` *(methodological)*
+Wave-4 used a **different, incomplete scanner**. Quantify and harmonize W1–3-vs-W4 scanner/sequence
+differences (own Wave-4 SST + cross-scanner QC) before pooling or transferring W1–3 models to W4.
+
 ---
+
+## Claims ↔ methods ↔ citation (the evidence links)
+Each dissertation/CMI claim, the method that produced it, and the publication node it lives in:
+
+| Claim (with statistic) | Method node | Publication |
+|---|---|---|
+| Latent factors predict age (ridge **R²=0.51, MAE ±10.11 mo**; raw-metric R²=0.16) | `cfa-sem` + `lasso-age-prediction` | `pub-eldamaty-2022-cmi` (Frontiers 2022, doi:10.3389/fpsyg.2022.1017317) |
+| **ICLF ↑ with age β=0.72** (p<.001); CPT d′=0.65, Hit-RT-SD=−0.91 | `cfa-sem` (CPT indicators) | `pub-eldamaty-2022-cmi` |
+| **ICLF → −RRLF (−0.22, p<.031)**; ICLF → +ENLF (0.55) — Maturational-Imbalance | `cfa-sem` (SEM) | `pub-eldamaty-2022-cmi` |
+| **CMI → BAS-D → DUSI-VP** mediation (indirect −0.073 p=.032; direct −0.597) | `cfa-sem` (mediation) | `pub-eldamaty-2022-cmi` |
+| Baseline **medial-caudate↔DLPFC/SPL** connectivity higher in future substance users; **↔mPFC** protective vs violence | `clad-masked-ica-w4` ← `ads-glimmer:method-striatum-group-ica`; `conn` | `pub-eldamaty-striatal-parcellation` |
+| Striatal parcels reproducible (split-half, k≈5/9) — **W1–3** | `ads-glimmer:method-striatum-group-ica` + `split-half-reproducibility` | `pub-eldamaty-striatal-parcellation` |
 
 ## Key dissertation findings (parsed from `eldamaty2020b` + the rsfMRI drafts)
 Anchors the spine; full provenance in the `graph/` publication + finding nodes.

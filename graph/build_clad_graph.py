@@ -1,25 +1,21 @@
 #!/usr/bin/env python3
 """build_clad_graph.py — emit the clad-glimmer research-object graph (idempotent).
 
-Writes typed Glimmer nodes (concept / experiment / method / standard / publication / persona /
-organization / program / dataset) as YAML-front-matter markdown sidecars under graph/<type-dir>/,
-plus _glimmer-index.json. Node format + edge vocabulary follow hebbianloop/glimmer v0.4
-(adds the `program` node + `in-program` / `cross-project` universal edges for project/subproject
-relationships and inter-project claims).
+CLAD is the Wave-4 / Visit-7 SUBPROJECT of ADS (same cohort). Glimmer v0.4 conventions:
+  - every node `in-program` -> program-clad (membership);
+  - W1-3 paradigms/instruments are ADS-owned and INHERITED here via `cross-project` -> ads-glimmer:<id>
+    (role inherited-from-parent) — W1-3 behavior predicts W4 outcomes (forward direction);
+  - W4 acquisitions + the Wave-4 SST + W4-adapted pipelines are CLAD-OWNED; W4-adapted methods
+    `cross-project` -> the ADS lineage method (role adapts-from-parent), bodies note the W4 param diffs;
+  - templates: ads56 = ADS W1-3 SST (inherited); standard-clad-wave4-sst = CLAD W4 SST (owned, different
+    scanner); NICAP/NICAP55 + HCP are EXTERNAL comparison projects (cross-project to ADS canonical).
 
-CLAD is a SUBPROJECT of ADS on the same cohort. Conventions applied here:
-  - every node carries `in-program` -> program-clad (membership);
-  - nodes inherited from / shared with the parent ADS graph carry a `cross-project` edge to the
-    ADS-canonical id (namespaced `ads-glimmer:<id>`), per "resolve duplicates to the parent";
-  - program-clad declares the subproject link to the parent via cross-project.
-
-No PHI: this graph contains only de-identified study metadata, hypotheses, methods, and outputs.
-Usage:  python3 graph/build_clad_graph.py
+No PHI. Usage: python3 graph/build_clad_graph.py
 """
 import hashlib, json, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-TS = "2026-06-11T00:00:00+00:00"          # fixed stamp (deterministic re-runs)
+TS = "2026-06-11T00:00:00+00:00"
 SCHEMA = "glimmer/v0.4.0"
 DATASET = "clad-glimmer"
 PROGRAM = "program-clad"
@@ -31,20 +27,57 @@ TYPE_DIR = {
     "derivative": "derivatives", "finding": "findings",
 }
 
-# cross-project edges (node id -> list of (namespaced-target, role)); ADS is the parent/canonical.
+# cross-project edges (node id -> [(namespaced-target, role)]). ADS is the parent / canonical owner.
 CROSS = {
-    "persona-shady-el-damaty":       [("ads-glimmer:persona-shady-el-damaty", "inherited-from-parent")],
-    "org-nij":                       [("ads-glimmer:org-nij", "inherited-from-parent")],
-    "org-georgetown-university":     [("ads-glimmer:org-georgetown-university", "inherited-from-parent")],
-    "org-cfmi-georgetown":           [("ads-glimmer:org-cfmi-georgetown", "inherited-from-parent")],
-    "concept-emofilm-violence":      [("ads-glimmer:concept-emofilm-violence-outcome", "parent-canonical")],
-    "ads-rest":                      [("ads-glimmer:experiment-ads-rest", "harmonizes-with")],
-    "masked-ica-parcellation":       [("ads-glimmer:method-striatum-group-ica", "harmonizes-with")],
-    "fmriprep":                      [("ads-glimmer:method-fmriprep", "harmonizes-with")],
-    "pub-eldamaty-striatal-parcellation": [("ads-glimmer:pub-eldamaty-vanmeter-2018-striatum", "harmonizes-with")],
+    # subproject link
+    "program-clad": [("ads-glimmer:program-ads", "subproject-of-parent")],
+    # inherited identities
+    "persona-shady-el-damaty":   [("ads-glimmer:persona-shady-el-damaty", "inherited-from-parent")],
+    "org-nij":                   [("ads-glimmer:org-nij", "inherited-from-parent")],
+    "org-georgetown-university": [("ads-glimmer:org-georgetown-university", "inherited-from-parent")],
+    "org-cfmi-georgetown":       [("ads-glimmer:org-cfmi-georgetown", "inherited-from-parent")],
+    # inherited W1-3 paradigms (forward: predict W4 outcomes)
+    "ads-cpt":                   [("ads-glimmer:experiment-cpt", "inherited-from-parent")],
+    "ads-wof":                   [("ads-glimmer:experiment-wof", "inherited-from-parent")],
+    "ads-efr":                   [("ads-glimmer:experiment-efr", "inherited-from-parent")],
+    "ads-temporal-discounting":  [("ads-glimmer:experiment-temporal-discounting", "inherited-from-parent")],
+    "ads-gonogo":                [("ads-glimmer:experiment-gonogo", "inherited-from-parent")],
+    "ads-emofilm-paradigm":      [("ads-glimmer:experiment-emofilm-eprime", "inherited-from-parent")],
+    # inherited battery + environmental/community-life assessment
+    "ads-dusi-r":                [("ads-glimmer:experiment-dusi-r", "inherited-from-parent")],
+    "ads-bisbas":                [("ads-glimmer:experiment-bisbas", "inherited-from-parent")],
+    "ads-context-battery":       [("ads-glimmer:experiment-context-battery", "inherited-from-parent")],
+    "ads-community-life":        [("ads-glimmer:experiment-community-life-assessment", "inherited-from-parent")],
+    # inherited methods (W1-3 CMI + shared infrastructure)
+    "cfa-sem":                   [("ads-glimmer:method-cfa-sem", "inherited-from-parent")],
+    "lasso-age-prediction":      [("ads-glimmer:method-lasso-age-prediction", "inherited-from-parent")],
+    "split-half-reproducibility":[("ads-glimmer:method-split-half-ica-reproducibility", "harmonizes-with")],
+    # W4-adapted methods (different params) -> ADS lineage
+    "clad-fmriprep-w4":          [("ads-glimmer:method-fmriprep", "adapts-from-parent")],
+    "clad-denoising-w4":         [("ads-glimmer:method-ica-aroma-denoising", "adapts-from-parent")],
+    "clad-masked-ica-w4":        [("ads-glimmer:method-striatum-group-ica", "adapts-from-parent")],
+    "clad-emofilm-bold-amplitude":[("ads-glimmer:method-emofilm-bold-amplitude", "adapts-from-parent")],
+    "clad-myelin-t1t2":          [("ads-glimmer:method-myelin-t1t2", "adapts-from-parent")],
+    "clad-dwi-w4":               [("ads-glimmer:method-dwi-fba-mrtrix3", "adapts-from-parent")],
+    "clad-wave4-sst":            [("ads-glimmer:method-ads-sst-mvtc2", "adapts-from-parent")],
+    # concepts: inherited / parent-canonical
+    "concept-neurocognitive-maturity": [("ads-glimmer:concept-neurocognitive-maturity", "inherited-from-parent")],
+    "concept-violence-cascade":        [("ads-glimmer:concept-violence-cascade", "inherited-from-parent")],
+    "concept-striatal-development":    [("ads-glimmer:concept-striatum-parcellation", "parent-canonical")],
+    "concept-emofilm-violence":        [("ads-glimmer:concept-emofilm-violence-outcome", "parent-canonical")],
+    "concept-w13-analytic-validation": [("ads-glimmer:concept-w13-analytic-validation", "inherited-from-parent")],
+    "concept-scanner-harmonization":   [("ads-glimmer:concept-scanner-harmonization", "inherited-from-parent")],
+    # standards: inherited W1-3 SST + external comparisons
+    "standard-clad-wave4-sst":   [("ads-glimmer:standard-ads56-sst", "compared-against"),
+                                  ("ads-glimmer:standard-nicap55", "compared-against"),
+                                  ("ads-glimmer:standard-nicap", "compared-against")],
+    "standard-bids":             [("ads-glimmer:standard-bids", "inherited-from-parent")],
+    "standard-hcp":              [("ads-glimmer:standard-hcp", "compared-against")],
+    # publications: parent-canonical / harmonizing
+    "pub-eldamaty-2022-cmi":     [("ads-glimmer:pub-ads-cmi", "parent-canonical")],
+    "pub-eldamaty-striatal-parcellation": [("ads-glimmer:pub-ads-masked-ica-parcellation", "harmonizes-with")],
 }
 
-# ---- node spec: (id, type, name, fields{}, edges[(type,target[,role])], description) -----------
 N = []
 def node(id, type, name, fields=None, edges=None, desc=""):
     N.append({"id": id, "type": type, "name": name,
@@ -53,14 +86,14 @@ def node(id, type, name, fields=None, edges=None, desc=""):
 # ---------------- PROGRAM ----------------
 node(PROGRAM, "program", "Community Life & Adolescent Development (CLAD)",
      {"program-kind": "subproject", "status": "active",
-      "outcome-measure": "violence proneness & substance-use initiation (DUSI); neurocognitive maturity (CMI)"},
-     [("cross-project", "ads-glimmer:program-ads", "subproject-of-parent"),
-      ("led-by", "persona-shady-el-damaty"), ("funded-by", "org-nij"),
+      "outcome-measure": "violence proneness & substance-use initiation (DUSI-VP); neurocognitive maturity (CMI)"},
+     [("led-by", "persona-shady-el-damaty"), ("funded-by", "org-nij"),
       ("addresses-concept", "concept-corticostriatal-convergence"),
       ("cited-in", "pub-eldamaty-2017-dissertation")],
-     """CLAD is the NIJ 2016-R2-CX-0019 Wave-4 / Visit-7 subproject of the Adolescent Development Study
-(ADS), on the same N=141 cohort. Subproject-of the parent ADS program (cross-graph). Anything touching
-Wave-4 data is CLAD; nodes shared with / inherited from ADS carry a cross-project edge to the parent.""")
+     """The NIJ 2016-R2-CX-0019 Wave-4 / Visit-7 subproject of the Adolescent Development Study (ADS),
+same N=141 cohort. Subproject-of the parent ADS program (cross-graph). W1-3 paradigms/instruments are
+inherited from ADS (they predict W4 outcomes); Wave-4 acquisitions, the Wave-4 SST, and W4-adapted
+pipelines (different scanner/params) are CLAD-owned.""")
 
 # ---------------- CONCEPTS ----------------
 node("concept-corticostriatal-convergence", "concept",
@@ -74,230 +107,221 @@ node("concept-corticostriatal-convergence", "concept",
       ("decomposes-into", "concept-striatal-development"),
       ("decomposes-into", "concept-structural-myelin-convergence"),
       ("tested-by-experiment", "ads-cpt"), ("tested-by-experiment", "ads-gonogo"),
-      ("tested-by-experiment", "ads-efr"), ("tested-by-experiment", "ads-emofilm"),
-      ("tested-by-experiment", "ads-dwi-hardi"), ("tested-by-experiment", "ads-anat-mprage"),
-      ("tested-by-experiment", "ads-anat-t2"),
+      ("tested-by-experiment", "ads-efr"), ("tested-by-experiment", "clad-emofilm"),
+      ("tested-by-experiment", "clad-dwi"), ("tested-by-experiment", "clad-anat-mprage"),
+      ("tested-by-experiment", "clad-anat-dir"),
       ("funded-by", "org-nij"), ("authored-by", "persona-shady-el-damaty"),
       ("cited-in", "pub-corticostriatal-convergence")],
-     """The two strongest CMI latent factors — inhibitory/impulse control (CPT + Go/NoGo) and emotional
-face recognition (EFR) — each index an individual cortico-striatal phenotype that converges across
-modalities (behavior -> function -> structure) onto distinct striatal parcels. Impulse-control axis:
-dorsal/associative caudate <-> DLPFC/IFG (Go/NoGo connectivity + frontostriatal DWI). Emotion axis:
-ventral/limbic striatum <-> vmPFC/amygdala (EmoFilm intersubject synchrony + emotion-network DWI).
-The STRUCTURE arm spans DWI AND T1w/T2w myelin (T2 gray/white boundary); HCP & NICAP are comparison
-anchors. Multimodal striatal parcellation recovers both axes; individual latent-factor deviation
-predicts the matching parcel's connectivity; and these predict vulnerability outcomes.""")
-
+     """Two strongest CMI latent factors — inhibitory/impulse control (CPT + Go/NoGo, W1-3) and emotional
+face recognition (EFR, W1-3) — each index a cortico-striatal phenotype converging across modalities
+(behavior -> function -> structure) onto distinct striatal parcels. Impulse-control axis: dorsal/associative
+caudate <-> DLPFC/IFG. Emotion axis: ventral/limbic striatum <-> vmPFC/amygdala (EmoFilm ISC). STRUCTURE arm
+spans DWI AND T1w/T2w myelin (T2 gray/white boundary). W1-3 behavior (inherited from ADS) predicts the W4
+imaging/connectivity phenotypes; this is the forward-inheritance design.""")
 node("concept-neurocognitive-maturity", "concept",
      "Adolescent neurocognitive maturity (Cognitive Maturity Index)",
      {"concept-kind": "construct", "status": "supported", "falsifiable": True},
      [("tested-by-experiment", "ads-cpt"), ("tested-by-experiment", "ads-wof"),
       ("tested-by-experiment", "ads-efr"), ("tested-by-experiment", "ads-temporal-discounting"),
-      ("funded-by", "org-nij"), ("cited-in", "pub-eldamaty-2022-cmi")],
-     """Latent factors of inhibitory control, risk/reward, and emotional face recognition predict
-chronological age; the residual (CMI) indexes maturational imbalance. Ridge model R2=0.51, MAE +/-10.11
-months. Lower CMI tracks higher DUSI violence proneness (R=-0.28) and substance use, mediated by BAS-D.""")
-
+      ("cited-in", "pub-eldamaty-2022-cmi")],
+     """W1-3 latent factors (inhibitory control, risk/reward, EFR) predict cognitive age; residual = CMI.
+Inherited from ADS; the W1-3 CMI predicts W4 outcomes. Ridge R2=0.51, MAE +/-10.11mo; CMI->BAS-D->DUSI-VP.""")
 node("concept-impulse-control-frontostriatal", "concept",
      "Inhibitory control and frontostriatal organization",
      {"concept-kind": "hypothesis", "status": "under-investigation", "falsifiable": True},
      [("tested-by-experiment", "ads-cpt"), ("tested-by-experiment", "ads-gonogo"),
-      ("tested-by-experiment", "ads-dwi-hardi")],
-     """Inhibitory/impulse control (ICLF; strongest age predictor, beta=0.72) maps onto associative
-dorsal-caudate <-> prefrontal executive cortex (DLPFC/IFG/preSMA) coupling, in both functional and
-structural (frontostriatal DWI) connectivity.""")
-
+      ("tested-by-experiment", "clad-dwi")],
+     """Inhibitory/impulse control (ICLF; strongest age predictor beta=0.72, W1-3) maps onto associative
+dorsal-caudate <-> DLPFC/IFG coupling — functional (Go/NoGo gPPI) + structural (frontostriatal DWI).""")
 node("concept-gonogo-inhibition", "concept",
      "Go/NoGo response inhibition and the frontostriatal control loop",
      {"concept-kind": "research-question", "status": "open", "falsifiable": True},
      [("tested-by-experiment", "ads-gonogo")],
-     """Go/NoGo response inhibition recruits and shapes the caudate<->DLPFC/IFG control loop; the
-control-axis behavioral->functional bridge of the flagship hypothesis.""")
-
+     """Go/NoGo (W1-3) response inhibition recruits caudate<->DLPFC/IFG. Behavior is an important predictor;
+the GLM/gPPI method applies forward to W4 rest / EmoFilm where W4 behavior is absent.""")
 node("concept-efr-individual-differences", "concept",
      "Emotional face recognition individual differences",
      {"concept-kind": "construct", "status": "supported", "falsifiable": True},
-     [("tested-by-experiment", "ads-efr"), ("tested-by-experiment", "ads-emofilm")],
-     """EFR latent factors (negative/positive emotion recognition) are a strong CMI component; negative
-emotion sensitivity rises with age (beta=0.35), positive-emotion recognition declines with puberty.""")
-
+     [("tested-by-experiment", "ads-efr"), ("tested-by-experiment", "clad-emofilm")],
+     """EFR latent factors (W1-3) are a strong CMI component; negative-emotion sensitivity rises with age.
+EFR deviation indexes an emotion-processing phenotype predicting W4 EmoFilm synchrony.""")
 node("concept-emofilm-synchrony", "concept",
      "EFR phenotype -> EmoFilm intersubject synchrony",
      {"concept-kind": "research-question", "status": "open", "falsifiable": True},
-     [("tested-by-experiment", "ads-emofilm"), ("tested-by-experiment", "ads-efr")],
-     """Subjects whose EFR latent factor deviates similarly from the population show more similar neural
-synchrony (ISC) during naturalistic EmoFilm viewing; the emotion-axis behavioral->functional bridge.""")
-
+     [("tested-by-experiment", "clad-emofilm"), ("tested-by-experiment", "ads-efr")],
+     """Subjects with similar EFR-latent deviation (W1-3) show more similar neural synchrony (ISC) during W4
+EmoFilm viewing; the emotion-axis behavior(W1-3)->function(W4) bridge.""")
 node("concept-violence-cascade", "concept",
      "Social-strain cascade to altered norms and violence",
      {"concept-kind": "hypothesis", "status": "under-investigation", "falsifiable": True},
-     [("cited-in", "pub-eldamaty-violence-cascade")],
-     """Adolescent social strain cascades through altered social norms and violence exposure into violence
-proneness and vulnerability in emerging adulthood (SEM / latent growth).""")
-
+     [("tested-by-experiment", "ads-community-life"), ("tested-by-experiment", "ads-dusi-r"),
+      ("cited-in", "pub-eldamaty-violence-cascade")],
+     """Adolescent social strain (neighborhood/family adversity, exposure to violence) -> altered norms ->
+violence proneness/vulnerability in emerging adulthood (SEM/latent growth, W1-4). Inherited from ADS.""")
 node("concept-striatal-development", "concept",
-     "Multimodal striatal functional parcellation across development",
+     "Striatal functional parcellation across development (W1-3) + W4 validation",
      {"concept-kind": "research-question", "status": "under-investigation", "falsifiable": True},
-     [("tested-by-experiment", "ads-rest"), ("tested-by-experiment", "ads-dwi-hardi"),
+     [("tested-by-experiment", "clad-rest"), ("tested-by-experiment", "clad-dwi"),
       ("cited-in", "pub-eldamaty-striatal-parcellation")],
-     """Masked group-ICA functional parcellation fused with seed-based diffusion connectivity recovers
-limbic (emotion) and associative (control) striatal parcels; medial-caudate<->prefrontal connectivity
-relates to outcomes and predicts substance-use initiation 18 months later.""")
-
+     """The masked group-ICA striatal parcellation was done with WAVES 1-3 (parent-canonical in ADS). Wave-4
+was NOT complete and used a DIFFERENT scanner/data — so the CLAD question is validating + applying the W1-3
+parcels to W4 (multimodal: functional + seeded diffusion).""")
 node("concept-structural-myelin-convergence", "concept",
      "Structural convergence: DWI + T1w/T2w myelin (T2 gray/white boundary)",
      {"concept-kind": "research-question", "status": "open", "falsifiable": True},
-     [("tested-by-experiment", "ads-anat-mprage"), ("tested-by-experiment", "ads-anat-t2"),
-      ("tested-by-experiment", "ads-dwi-hardi")],
-     """The flagship's STRUCTURE arm: individual differences in the emotion/control cortico-striatal
-networks are reflected not only in DWI white-matter but in T1w/T2w myelin contrast and the T2
-gray/white-matter boundary (HCP-style myelin mapping). HCP (incl. HCP-D) and the NICAP55 study-specific
-template are the comparison anchors.""")
-
+     [("tested-by-experiment", "clad-anat-mprage"), ("tested-by-experiment", "clad-anat-t2-space"),
+      ("tested-by-experiment", "clad-anat-dir"), ("tested-by-experiment", "clad-dwi")],
+     """Flagship STRUCTURE arm: emotion/control networks differ structurally in DWI white-matter AND in
+T1w/T2w myelin + the T2 gray/white-matter boundary (incl. the DIR contrast). ads56 (W1-3 SST), the Wave-4
+SST, and the external NICAP/HCP templates are comparison anchors.""")
 node("concept-emofilm-violence", "concept",
      "EmoFilm emotion-network response -> Wave-4 violence outcome",
      {"concept-kind": "research-question", "status": "open", "falsifiable": True},
-     [("tested-by-experiment", "ads-emofilm")],
-     """Prospective prediction of Wave-4 violence/substance outcomes from EmoFilm emotion-network response.
-Parent-canonical concept in ADS (cross-project).""")
+     [("tested-by-experiment", "clad-emofilm")],
+     """Prospective prediction of Wave-4 violence/substance outcomes (DUSI-VP) from W4 EmoFilm emotion-network
+response. Parent-canonical concept in ADS.""")
+# methodological RQs
+node("concept-w13-analytic-validation", "concept",
+     "Validating W1-3 analytic choices before forward application to W4",
+     {"concept-kind": "research-question", "status": "open", "falsifiable": True},
+     [("tested-by-experiment", "clad-rest"), ("tested-by-experiment", "clad-anat-mprage")],
+     """Methodological: validate the W1-3 analytic choices (denoising, ICA model order, parcellation,
+template) and their robustness (multiverse) before applying them to Wave-4 data.""")
+node("concept-scanner-harmonization", "concept",
+     "Wave-1-3 vs Wave-4 scanner / sequence harmonization",
+     {"concept-kind": "research-question", "status": "open", "falsifiable": True},
+     [("tested-by-experiment", "clad-anat-mprage"), ("tested-by-experiment", "clad-rest")],
+     """Methodological: Wave-4 used a DIFFERENT (incomplete) scanner. Quantify and harmonize W1-3-vs-W4
+scanner/sequence differences (own Wave-4 SST + cross-scanner QC) before pooling or transferring W1-3 models.""")
 
-# ---------------- EXPERIMENTS ----------------
-# behavioral (waves 1-3); no Wave-4 BIDS realization edge
-node("ads-cpt", "experiment", "Continuous Performance Task (CPT)",
-     {"task-name": "cpt", "conditions": ["target", "lure-Q"], "n-trials": 150},
-     [("analyzed-by", "cfa-sem")], "Inhibitory control / sustained attention; signal-detection metrics.")
-node("ads-wof", "experiment", "Wheel of Fortune (WOF)",
-     {"task-name": "wof", "conditions": ["high-risk", "low-risk"], "n-trials": 90},
-     [("analyzed-by", "cfa-sem")], "Risk/reward decision making; fMRI in waves 1-3.")
-node("ads-efr", "experiment", "Emotional Face Recognition (EFR)",
-     {"task-name": "efr", "conditions": ["happy", "angry", "fearful", "sad", "disgust", "surprise", "neutral"], "n-trials": 70},
-     [("analyzed-by", "cfa-sem")], "NimStim facial-emotion recognition; accuracy + RT for positive/negative affect.")
-node("ads-temporal-discounting", "experiment", "Temporal Delay Discounting (TD)",
-     {"task-name": "temporal-discounting"},
-     [("analyzed-by", "cfa-sem")], "Preference for immediate vs delayed rewards; AUC of indifference values.")
-# Wave-4 acquisitions -> realized in the Wave-4 BIDS dataset
-node("ads-emofilm", "experiment", "EmoFilm naturalistic emotional film task",
+# ---------------- INHERITED W1-3 paradigms (ADS-owned; cross-project injected) ----------------
+for eid, nm, body in [
+    ("ads-cpt", "Continuous Performance Task (CPT) [W1-3, inherited]", "W1-3 ADS paradigm (inhibitory control). Inherited; predicts W4 outcomes."),
+    ("ads-wof", "Wheel of Fortune (WOF) [W1-3, inherited]", "W1-3 ADS paradigm (risk/reward). Inherited."),
+    ("ads-efr", "Emotional Face Recognition (EFR) [W1-3, inherited]", "W1-3 ADS paradigm (emotion recognition). Inherited; bridges to W4 EmoFilm synchrony."),
+    ("ads-temporal-discounting", "Temporal Delay Discounting (TD) [W1-3, inherited]", "W1-3 ADS paradigm (delay discounting). Inherited."),
+    ("ads-gonogo", "Go/NoGo [W1-3, inherited]", "W1-3 ADS in-scanner inhibition paradigm. Inherited; method applies forward to W4 rest/EmoFilm."),
+    ("ads-emofilm-paradigm", "EmoFilm paradigm (E-Prime) [W1-3 origin, inherited]", "EmoFilm task design (ADS, W1-3 origin); the W4 acquisition is clad-emofilm."),
+    ("ads-dusi-r", "DUSI-R substance/violence screening [inherited]", "W1-4 survey; violence-proneness (DUSI-VP) + substance subscales. Inherited; the outcome measure."),
+    ("ads-bisbas", "BIS/BAS scales [inherited]", "W1-4 reinforcement-sensitivity (BAS-D mediates CMI->violence). Inherited."),
+    ("ads-context-battery", "Development+cognition+SES battery (PDS/KBIT) [inherited]", "W1-4: PDS, KBIT/IQ, BMI, SES. Inherited."),
+    ("ads-community-life", "Community-life / environmental assessment [inherited]", "W1-4 'Community Life' battery: neighborhood, family climate, exposure to violence, deviant-peer, attitudes-to-violence. Inherited; drives the violence cascade. (Instrument names pending protocol QC.)"),
+]:
+    node(eid, "experiment", nm, {"task-name": eid}, [], body)
+
+# ---------------- CLAD-owned W4 acquisitions (realized in the Wave-4 BIDS) ----------------
+node("clad-emofilm", "experiment", "EmoFilm BOLD (Wave-4 acquisition)",
      {"task-name": "emofilm", "conditions": ["REST", "NEU", "POS", "NEG"]},
-     [("realized-by", "dataset-clad-bids-wave4"), ("analyzed-by", "intersubject-synchrony"),
-      ("analyzed-by", "method-emofilm-bold-amplitude")],
-     "Naturalistic emotional film during fMRI (Wave-4); HCP-pulse replica; supports ISC.")
-node("ads-gonogo", "experiment", "Go/NoGo response-inhibition task",
-     {"task-name": "gonogo", "conditions": ["go", "nogo"]},
-     [("realized-by", "dataset-clad-bids-wave4"), ("analyzed-by", "gonogo-frontostriatal-glm-gppi")],
-     "Response inhibition during fMRI; frontostriatal (caudate<->DLPFC/IFG) activation + connectivity.")
-node("ads-rest", "experiment", "Resting-state fMRI",
-     {"task-name": "rest", "duration-sec": 342},
-     [("realized-by", "dataset-clad-bids-wave4"), ("analyzed-by", "masked-ica-parcellation")],
-     "Resting-state BOLD; input to masked striatal group-ICA parcellation + connectivity.")
-node("ads-dwi-hardi", "experiment", "Diffusion-weighted imaging (HARDI)",
-     {"task-name": "dwi-hardi"},
-     [("realized-by", "dataset-clad-bids-wave4"), ("analyzed-by", "seeded-diffusion-connectivity"),
-      ("analyzed-by", "dwi-preprocessing")],
-     "HARDI diffusion; frontostriatal + emotion-network white-matter structure + seed-based tractography.")
-node("ads-anat-mprage", "experiment", "T1w MPRAGE structural acquisition",
+     [("realized-by", "dataset-clad-bids-wave4"), ("co-acquired-with", "clad-rest"),
+      ("analyzed-by", "clad-emofilm-isc"), ("analyzed-by", "clad-emofilm-bold-amplitude")],
+     "Wave-4 naturalistic emotional-film BOLD (HCP-pulse replica, different scanner). The W4 realization of the inherited EmoFilm paradigm.")
+node("clad-rest", "experiment", "Resting-state BOLD (Wave-4 acquisition)",
+     {"task-name": "rest"},
+     [("realized-by", "dataset-clad-bids-wave4"), ("analyzed-by", "clad-masked-ica-w4")],
+     "Wave-4 resting-state BOLD; input to the W4 masked striatal group-ICA (validation of W1-3 parcels).")
+node("clad-anat-mprage", "experiment", "T1w MPRAGE (Wave-4 acquisition)",
      {"task-name": "anat-t1w"},
-     [("realized-by", "dataset-clad-bids-wave4"), ("analyzed-by", "freesurfer-recon"),
-      ("analyzed-by", "nicap55-template"), ("analyzed-by", "myelin-t1t2-mapping")],
-     "T1w MPRAGE; feeds FreeSurfer recons, the NICAP55 study-specific template, and T1w/T2w myelin.")
-node("ads-anat-t2", "experiment", "T2w structural acquisition",
-     {"task-name": "anat-t2w"},
-     [("realized-by", "dataset-clad-bids-wave4"), ("analyzed-by", "myelin-t1t2-mapping"),
-      ("co-acquired-with", "ads-anat-mprage")],
-     "T2w structural; with T1w gives the T1w/T2w ratio + T2 gray/white-matter boundary (myelin contrast).")
+     [("realized-by", "dataset-clad-bids-wave4"), ("analyzed-by", "clad-wave4-sst"),
+      ("analyzed-by", "clad-myelin-t1t2")],
+     "Wave-4 T1w MPRAGE; feeds the Wave-4 SST + T1w/T2w myelin.")
+node("clad-anat-t2-space", "experiment", "T2w SPACE (Wave-4 acquisition)",
+     {"task-name": "anat-t2w-space"},
+     [("realized-by", "dataset-clad-bids-wave4"), ("co-acquired-with", "clad-anat-mprage"),
+      ("analyzed-by", "clad-myelin-t1t2")],
+     "Wave-4 T2w SPACE; with T1w gives the T1w/T2w myelin ratio.")
+node("clad-anat-dir", "experiment", "T2w FGATIR / DIR (Wave-4 acquisition)",
+     {"task-name": "anat-dir"},
+     [("realized-by", "dataset-clad-bids-wave4"), ("co-acquired-with", "clad-anat-mprage")],
+     "Wave-4 double-inversion-recovery (FGATIR/DIR) structural; the T2 gray/white-matter boundary + WM/GM microstructure contrast.")
+node("clad-dwi", "experiment", "DWI/HARDI (Wave-4 acquisition)",
+     {"task-name": "dwi-hardi"},
+     [("realized-by", "dataset-clad-bids-wave4"), ("analyzed-by", "clad-dwi-w4")],
+     "Wave-4 HARDI diffusion; seeded structural connectivity for the structure arm.")
 
-# ---------------- METHODS ----------------
-node("cfa-sem", "method", "Confirmatory factor analysis + structural equation modeling",
-     {"tool": "lavaan (R)", "version": "0.6-6"}, [],
-     "CFA to estimate latent cognitive factors; SEM for factor interactions and mediation.")
-node("lasso-age-prediction", "method", "Regularized (ridge/LASSO) age prediction",
-     {"tool": "glmnet (R)", "version": "4.0-2"}, [],
-     "Cross-validated regularized regression of latent factors on age; residual = CMI.")
-node("masked-ica-parcellation", "method", "Masked group-ICA striatal parcellation",
-     {"tool": "MELODIC / masked group-ICA", "version": "FSL 6.0"}, [],
-     "Striatal-mask-constrained group-ICA; max-loading voxel labeling; split-half reproducibility.")
-node("gonogo-frontostriatal-glm-gppi", "method", "Go/NoGo GLM + gPPI frontostriatal connectivity",
-     {"tool": "fMRI GLM + gPPI", "version": "SPM12/Nilearn"}, [],
-     "Task GLM + generalized psychophysiological interaction for caudate<->DLPFC/IFG connectivity.")
-node("intersubject-synchrony", "method", "Intersubject correlation / synchrony (ISC)",
+# ---------------- METHODS: inherited (W1-3) + W4-adapted ----------------
+node("cfa-sem", "method", "CFA + SEM (latent cognitive factors) [inherited]",
+     {"tool": "lavaan (R)", "version": "0.6-6"}, [], "Inherited W1-3 CMI method.")
+node("lasso-age-prediction", "method", "Ridge/LASSO age prediction [inherited]",
+     {"tool": "glmnet (R)", "version": "4.0-2"}, [], "Inherited W1-3 CMI age model; residual = CMI.")
+node("split-half-reproducibility", "method", "Split-half ICA reproducibility [harmonized]",
+     {"tool": "Munkres + Dice", "version": "0.1"}, [], "Harmonized with the ADS split-half method; applied to W4 parcels.")
+node("clad-wave4-sst", "method", "Wave-4 study-specific template construction (W4 params)",
+     {"tool": "antsMultivariateTemplateConstruction2", "version": "ANTs 2.x",
+      "parameters": {"k": "T1w+T2w+DIR", "scanner": "wave-4 (differs from W1-3)"}},
+     [("requires-standard", "standard-clad-wave4-sst")],
+     "Builds the CLAD Wave-4 SST from W4 multicontrast structural (different scanner). Adapts the ADS ads56 MVTC2 recipe with W4 params; produces standard-clad-wave4-sst.")
+node("clad-fmriprep-w4", "method", "fMRIPrep (Wave-4 params)",
+     {"tool": "fMRIPrep", "version": "23.x", "parameters": {"output-space": "clad-wave4-sst", "multiband": "yes (HCP-pulse)"}},
+     [("requires-standard", "standard-clad-wave4-sst")],
+     "Wave-4 fMRIPrep normalized to the Wave-4 SST; multiband/HCP-pulse settings differ from W1-3.")
+node("clad-denoising-w4", "method", "Denoising (Wave-4 params: multiband + respiratory notch)",
+     {"tool": "ICA-AROMA + Nipype", "version": "0.1"}, [],
+     "ICA-AROMA + confound regression with a respiratory notch filter for the W4 multiband HCP-pulse data.")
+node("clad-masked-ica-w4", "method", "Masked group-ICA striatal parcellation (Wave-4)",
+     {"tool": "MELODIC", "version": "FSL 6.0"}, [],
+     "W4 masked group-ICA; validates/applies the W1-3 striatal parcels to the (incomplete, different-scanner) W4 rest data.")
+node("clad-dwi-w4", "method", "DWI tractography (Wave-4)",
+     {"tool": "MRtrix3 / probtrackx", "version": "MRtrix3 3.0"}, [],
+     "W4 seeded probabilistic tractography for striatal structural connectivity.")
+node("clad-emofilm-isc", "method", "Intersubject synchrony (ISC) on EmoFilm",
      {"tool": "BrainIAK ISC", "version": "0.x"}, [],
-     "Intersubject correlation of EmoFilm BOLD; relate pairwise synchrony to EFR-latent similarity.")
-node("seeded-diffusion-connectivity", "method", "Seed-based probabilistic tractography",
-     {"tool": "MRtrix3 / FSL probtrackx", "version": "MRtrix3 3.0"}, [],
-     "Striatal-parcel-seeded probabilistic tractography for structural connectivity fingerprints.")
-node("multimodal-striatal-parcellation", "method", "Multimodal (functional + diffusion) striatal parcellation",
-     {"tool": "ICA + diffusion fusion", "version": "0.1"},
-     [("composes", "masked-ica-parcellation"), ("composes", "seeded-diffusion-connectivity")],
-     "Fuse functional group-ICA parcels with seed-based diffusion connectivity to define emotion vs control striatal parcels.")
-node("fmriprep", "method", "fMRIPrep preprocessing",
-     {"tool": "fMRIPrep", "version": "23.x"},
-     [("requires-standard", "standard-nicap55-sst")],
-     "Standardized BOLD/anat preprocessing; normalizes to the NICAP55 study-specific template.")
-node("freesurfer-recon", "method", "FreeSurfer / FastSurfer surface reconstruction",
-     {"tool": "FastSurfer", "version": "2.x"}, [], "Cortical surface reconstruction + morphometry (recons).")
-node("nicap55-template", "method", "NICAP55 study-specific template construction",
-     {"tool": "ANTs multivariate template", "version": "ANTs 2.x"},
-     [("requires-standard", "standard-nicap55-sst")],
-     "Builds the age-appropriate multicontrast developmental template (T1w/T2w) all CLAD imaging normalizes to.")
-node("dwi-preprocessing", "method", "DWI/HARDI preprocessing",
-     {"tool": "QSIPrep", "version": "0.x"}, [], "Denoising, distortion/eddy correction, model fitting for HARDI.")
-node("split-half-reproducibility", "method", "Split-half reproducibility validation",
-     {"tool": "custom (Munkres matching + correlation)", "version": "0.1"}, [],
-     "Repeated split-half ICA + Hungarian matching to select reproducible striatal model order (k~5 primary, ~8-10 fine).")
-node("myelin-t1t2-mapping", "method", "T1w/T2w myelin mapping (T2 gray/white boundary)",
-     {"tool": "HCP-style T1w/T2w ratio + surface g/w contrast", "version": "0.1"},
+     "CLAD-owned: intersubject correlation of W4 EmoFilm BOLD; relate pairwise synchrony to EFR-latent similarity.")
+node("clad-emofilm-bold-amplitude", "method", "EmoFilm BOLD amplitude (Wave-4)",
+     {"tool": "fMRI amplitude extraction", "version": "0.1"}, [],
+     "W4 EmoFilm amygdala/PFC BOLD amplitude for the violence-outcome model.")
+node("clad-myelin-t1t2", "method", "T1w/T2w myelin (Wave-4; T2 gray/white boundary)",
+     {"tool": "HCP-style T1w/T2w ratio", "version": "0.1"},
      [("requires-standard", "standard-hcp")],
-     "T1w/T2w ratio + T2 gray/white-matter boundary surface contrast (HCP-style); the second structural axis alongside DWI.")
-node("method-emofilm-bold-amplitude", "method", "EmoFilm BOLD amplitude / emotion-network response",
-     {"tool": "fMRI GLM / amplitude extraction", "version": "0.1"}, [],
-     "Wave-4 EmoFilm amygdala/PFC BOLD amplitude + emotion-network response for the violence-outcome model.")
+     "W4 T1w/T2w ratio + T2 gray/white-matter boundary surface contrast; the second structural axis.")
+node("multimodal-striatal-parcellation", "method", "Multimodal striatal parcellation (functional + diffusion)",
+     {"tool": "ICA + diffusion fusion", "version": "0.1"},
+     [("composes", "clad-masked-ica-w4"), ("composes", "clad-dwi-w4")],
+     "Fuse W4 functional group-ICA parcels with seed-based diffusion connectivity (emotion vs control parcels).")
 
 # ---------------- STANDARDS ----------------
-node("standard-bids", "standard", "Brain Imaging Data Structure (BIDS)",
-     {"standard-class": "spec", "version": "1.9.0", "upstream-url": "https://bids.neuroimaging.io"}, [],
-     "The de-identified imaging is organized to BIDS.")
-node("standard-nicap55-sst", "standard", "NICAP55 study-specific template (SST)",
+node("standard-clad-wave4-sst", "standard", "CLAD Wave-4 study-specific template (SST)",
      {"standard-class": "template"}, [],
-     "Age-appropriate multicontrast (T1w/T2w) developmental Study-Specific Template built from the cohort "
-     "(NICAP lineage). The normalization target for CLAD imaging; built by method nicap55-template.")
-node("standard-hcp", "standard", "Human Connectome Project (HCP / HCP-D) protocol",
-     {"standard-class": "protocol", "upstream-url": "https://www.humanconnectome.org"}, [],
-     "HCP (incl. HCP-D developmental) reference protocol/pipelines for myelin mapping + pulse-sequence "
-     "lineage (EmoFilm is an HCP-pulse replica). Comparison anchor; NDA-gated, metadata only — not CLAD data.")
+     "CLAD-OWNED. Built from Wave-4 multicontrast structural (T1w/T2w/DIR) on the W4 scanner. The W4 "
+     "normalization target. Compared against ads56 (W1-3 SST, inherited) and the external NICAP/NICAP55 templates.")
+node("standard-bids", "standard", "Brain Imaging Data Structure (BIDS)",
+     {"standard-class": "spec", "version": "1.9.0"}, [], "De-identified imaging organized to BIDS.")
+node("standard-hcp", "standard", "Human Connectome Project (HCP / HCP-D)",
+     {"standard-class": "protocol"}, [],
+     "External comparison: HCP/HCP-D myelin-mapping + pulse-sequence lineage (EmoFilm is an HCP-pulse replica). NDA-gated; metadata only.")
 
 # ---------------- PUBLICATIONS ----------------
 node("pub-eldamaty-2022-cmi", "publication",
      "Introducing an Adolescent Cognitive Maturity Index (Frontiers 2022)",
      {"pub-status": "published", "venue": "Frontiers in Psychology", "year": 2022,
-      "doi": "10.3389/fpsyg.2022.1017317", "pmid": "36571021",
-      "repo": "https://github.com/hebbianloop/eldamaty2020b"},
+      "doi": "10.3389/fpsyg.2022.1017317", "pmid": "36571021"},
      [("authored-by", "persona-shady-el-damaty"), ("authored-by", "persona-diana-fishbein"),
       ("authored-by", "persona-john-vanmeter"),
       ("addresses-concept", "concept-neurocognitive-maturity"),
       ("cites-method", "cfa-sem"), ("cites-method", "lasso-age-prediction")],
-     "Published CMI paper (RQ1). Latent-factor age prediction; CMI mediates vulnerability via BAS-D.")
+     "Published CMI paper (W1-3, RQ1). Latent-factor age prediction; CMI->BAS-D->DUSI-VP mediation. Parent-canonical in ADS.")
 node("pub-eldamaty-violence-cascade", "publication",
      "Social-strain cascade to violence & altered norms (SEM)",
-     {"pub-status": "draft", "repo": "https://github.com/hebbianloop/eldamaty2020a"},
+     {"pub-status": "draft"},
      [("authored-by", "persona-shady-el-damaty"), ("authored-by", "persona-diana-fishbein"),
-      ("addresses-concept", "concept-violence-cascade")],
-     "Dissertation-core SEM/latent-growth of strain -> norms -> violence (RQ2). Draft.")
+      ("addresses-concept", "concept-violence-cascade"),
+      ("cites-method", "cfa-sem")],
+     "Dissertation-core SEM/latent-growth: strain -> norms -> violence (RQ2). Draft.")
 node("pub-eldamaty-striatal-parcellation", "publication",
      "Multimodal parcellation of the adolescent striatum",
      {"pub-status": "draft"},
      [("authored-by", "persona-shady-el-damaty"), ("authored-by", "persona-john-vanmeter"),
       ("addresses-concept", "concept-striatal-development"),
-      ("cites-method", "masked-ica-parcellation"), ("cites-method", "split-half-reproducibility")],
-     "Striatal functional/diffusion parcellation (RQ3). Draft / OHBM-CCN-FLUX. eldamaty2020c.")
+      ("cites-method", "clad-masked-ica-w4"), ("cites-method", "split-half-reproducibility")],
+     "Striatal functional/diffusion parcellation (RQ3). Parcellation was W1-3 (parent); W4 validation. Draft.")
 node("pub-corticostriatal-convergence", "publication",
      "Cortico-striatal multimodal convergence of impulse-control & emotion phenotypes (PLANNED)",
      {"pub-status": "draft"},
      [("authored-by", "persona-shady-el-damaty"),
       ("addresses-concept", "concept-corticostriatal-convergence"),
       ("cites-method", "multimodal-striatal-parcellation"),
-      ("cites-method", "intersubject-synchrony"),
-      ("cites-method", "seeded-diffusion-connectivity"),
-      ("cites-method", "myelin-t1t2-mapping")],
-     "PLANNED flagship paper: two-axis (impulse-control + emotion) cortico-striatal convergence across behavior/function/structure.")
+      ("cites-method", "clad-emofilm-isc"), ("cites-method", "clad-dwi-w4"),
+      ("cites-method", "clad-myelin-t1t2")],
+     "PLANNED flagship: two-axis cortico-striatal convergence across behavior(W1-3)/function/structure(W4).")
 node("pub-eldamaty-2017-dissertation", "publication",
      "Adolescent Neurocognitive Maturity Mediates Paths to Altered Social Norms & Vulnerability in Emerging Adulthood",
      {"pub-status": "published", "venue": "Georgetown University (PhD dissertation)", "year": 2017},
@@ -308,35 +332,30 @@ node("pub-eldamaty-2017-dissertation", "publication",
       ("addresses-concept", "concept-corticostriatal-convergence")],
      "The defended dissertation; umbrella output aggregating the component papers.")
 
-# ---------------- PERSONAS ----------------
+# ---------------- PERSONAS / ORGANIZATIONS ----------------
 node("persona-shady-el-damaty", "persona", "Shady El Damaty",
      {"persona-kind": "researcher"}, [("affiliated-with", "org-georgetown-university")],
-     "Dissertation author. Inherited from parent ADS (canonical: ads-glimmer:persona-shady-el-damaty).")
+     "Dissertation author. Inherited copy (canonical: ads-glimmer:persona-shady-el-damaty).")
 node("persona-john-vanmeter", "persona", "John W. VanMeter",
-     {"persona-kind": "researcher"}, [("affiliated-with", "org-cfmi-georgetown")],
-     "Dissertation advisor; director, CFMI.")
+     {"persona-kind": "researcher"}, [("affiliated-with", "org-cfmi-georgetown")], "Dissertation advisor; director, CFMI.")
 node("persona-diana-fishbein", "persona", "Diana H. Fishbein",
-     {"persona-kind": "researcher"}, [],
-     "Co-mentor (Penn State / UNC); translational prevention.")
-
-# ---------------- ORGANIZATIONS ----------------
+     {"persona-kind": "researcher"}, [], "Co-mentor (Penn State / UNC); translational prevention.")
 node("org-nij", "organization", "National Institute of Justice",
-     {"org-kind": "funder"}, [], "Funder of CLAD (award 2016-R2-CX-0019). Inherited from parent ADS.")
+     {"org-kind": "funder"}, [], "Funder (award 2016-R2-CX-0019). Inherited from parent ADS.")
 node("org-georgetown-university", "organization", "Georgetown University",
      {"org-kind": "institution"}, [], "Degree-granting institution. Inherited from parent ADS.")
 node("org-cfmi-georgetown", "organization", "Center for Functional & Molecular Imaging (CFMI), Georgetown",
-     {"org-kind": "lab"}, [("part-of", "org-georgetown-university")],
-     "Imaging center where ADS/CLAD data were acquired. Inherited from parent ADS.")
+     {"org-kind": "lab"}, [("part-of", "org-georgetown-university")], "Imaging center. Inherited from parent ADS.")
 
-# ---------------- DATASETS (pointers; bytes deferred) ----------------
+# ---------------- DATASETS ----------------
 node("dataset-clad-bids-wave4", "dataset", "CLAD Wave-4 BIDS (de-identified)",
      {"domain": "clad", "datalad-relative-path": "data/bids", "tier": "OPEN-deid", "bytes-status": "deferred"},
      [("conforms-to", "standard-bids")],
-     "Wave-4 / Visit-7 BIDS (61 subj local). Defaced + annexed in the data pass; raw DICOM stays in the private backend.")
+     "Wave-4 / Visit-7 BIDS: T1w MPRAGE, T2w SPACE, T2w DIR, DWI, fmap, EmoFilm BOLD, rest BOLD (61 subj local). Defaced + annexed in the data pass.")
 node("dataset-clad-bids-w13", "dataset", "CLAD Waves 1-3 BIDS (de-identified)",
      {"domain": "clad", "datalad-relative-path": "data/bids", "tier": "OPEN-deid", "bytes-status": "deferred"},
      [("conforms-to", "standard-bids")],
-     "Longitudinal Waves 1-3 BIDS (142 subj). Provides developmental baseline; bytes deferred.")
+     "Longitudinal Waves 1-3 BIDS (142 subj). Developmental baseline; bytes deferred.")
 
 # ----------------------------- emit -----------------------------
 def yaml_scalar(v):
@@ -352,20 +371,19 @@ def yaml_list(vals):
 def _edge_line(e):
     et, tgt = e[0], e[1]
     role = e[2] if len(e) > 2 else None
-    tgt_r = '"' + tgt + '"' if ":" in str(tgt) else tgt   # quote namespaced cross-project targets
+    tgt_r = '"' + tgt + '"' if ":" in str(tgt) else tgt
     s = f'  - {{type: {et}, target: {tgt_r}'
     return s + (f', role: {role}}}' if role else "}")
 
 def emit(n):
-    fm = ["---",
-          f'id: {n["id"]}',
-          f'type: {n["type"]}',
-          f'name: {yaml_scalar(n["name"])}',
-          f'created: {TS}',
-          f'modified: {TS}']
+    fm = ["---", f'id: {n["id"]}', f'type: {n["type"]}', f'name: {yaml_scalar(n["name"])}',
+          f'created: {TS}', f'modified: {TS}']
     fm.append(f'provenance-hash: sha256:{hashlib.sha256(n["desc"].encode()).hexdigest()}')
     for k, v in n["fields"].items():
-        fm.append(f'{k}: {yaml_list(v) if isinstance(v, list) else yaml_scalar(v)}')
+        if isinstance(v, dict):
+            fm.append(f"{k}: {{" + ", ".join(f'{ik}: {yaml_scalar(iv)}' for ik, iv in v.items()) + "}")
+        else:
+            fm.append(f'{k}: {yaml_list(v) if isinstance(v, list) else yaml_scalar(v)}')
     if n["edges"]:
         fm.append("edges:")
         fm += [_edge_line(e) for e in n["edges"]]
@@ -373,47 +391,34 @@ def emit(n):
         fm.append("description: |")
         fm += ["  " + line for line in n["desc"].splitlines()]
     fm.append("---")
-    d = os.path.join(HERE, TYPE_DIR[n["type"]])
-    os.makedirs(d, exist_ok=True)
     rel = os.path.join(TYPE_DIR[n["type"]], n["id"] + ".md")
+    os.makedirs(os.path.join(HERE, TYPE_DIR[n["type"]]), exist_ok=True)
     with open(os.path.join(HERE, rel), "w") as f:
         f.write("\n".join(fm) + "\n")
     return rel
 
 def main():
     ids = [x["id"] for x in N]
-    assert len(ids) == len(set(ids)), "duplicate node id"
-    # inject membership (in-program) on every non-program node, and cross-project edges
+    assert len(ids) == len(set(ids)), "duplicate node id: " + ",".join(sorted({x for x in ids if ids.count(x) > 1}))
     for n in N:
         if n["type"] != "program":
             n["edges"].append(("in-program", PROGRAM))
         for tgt, role in CROSS.get(n["id"], []):
             n["edges"].append(("cross-project", tgt, role))
-        # concept requires a `statement`; derive a one-sentence statement from the description
         if n["type"] == "concept" and "statement" not in n["fields"]:
             stmt = n["desc"].replace("\n", " ").split(". ")[0].strip().rstrip(".") + "."
             n["fields"] = {"statement": stmt, **n["fields"]}
-    index_nodes = []
-    for n in N:
-        index_nodes.append({"id": n["id"], "type": n["type"], "path": emit(n)})
-    # edge integrity: in-graph targets must be known; cross-project targets are out-of-graph
+    index_nodes = [{"id": n["id"], "type": n["type"], "path": emit(n)} for n in N]
     known = set(ids)
-    dangling = sorted({e[1] for n in N for e in n["edges"]
-                       if e[0] != "cross-project" and e[1] not in known})
-    index = {
-        "schema": SCHEMA,
-        "dataset-name": DATASET,
-        "default-domain": "neuroimaging",
-        "created": TS,
-        "description": "clad-glimmer research-object graph for the Community Life & Adolescent Development study (a subproject of ADS).",
-        "upstream-graph": "https://github.com/hebbianloop/ads-glimmer-graph (parent; same cohort)",
-        "node-count": len(index_nodes),
-        "nodes": sorted(index_nodes, key=lambda x: (x["type"], x["id"])),
-    }
+    dangling = sorted({e[1] for n in N for e in n["edges"] if e[0] != "cross-project" and e[1] not in known})
+    index = {"schema": SCHEMA, "dataset-name": DATASET, "default-domain": "neuroimaging", "created": TS,
+             "description": "clad-glimmer research-object graph for the Community Life & Adolescent Development study (a subproject of ADS).",
+             "upstream-graph": "https://github.com/hebbianloop/ads-glimmer-graph (parent; same cohort)",
+             "node-count": len(index_nodes),
+             "nodes": sorted(index_nodes, key=lambda x: (x["type"], x["id"]))}
     with open(os.path.join(HERE, "_glimmer-index.json"), "w") as f:
-        json.dump(index, f, indent=2)
-        f.write("\n")
-    print(f"emitted {len(N)} nodes -> _glimmer-index.json (node-count={len(index_nodes)})")
+        json.dump(index, f, indent=2); f.write("\n")
+    print(f"emitted {len(N)} nodes (node-count={len(index_nodes)})")
     print("dangling intra-graph edge targets:", dangling or "none")
 
 if __name__ == "__main__":

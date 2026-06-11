@@ -4,16 +4,16 @@ type: concept
 name: "Emotional face recognition individual differences"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:c851457814df918c14e1388319894853db0e2c5fb1667de63e23be7a647701a4
-statement: "EFR latent factors (negative/positive emotion recognition) are a strong CMI component; negative emotion sensitivity rises with age (beta=0.35), positive-emotion recognition declines with puberty."
+provenance-hash: sha256:2410140fa9bd14c34044fdeefa3154910dce050946753fc204d2574d7ffdeaa7
+statement: "EFR latent factors (W1-3) are a strong CMI component; negative-emotion sensitivity rises with age."
 concept-kind: "construct"
 status: "supported"
 falsifiable: true
 edges:
   - {type: tested-by-experiment, target: ads-efr}
-  - {type: tested-by-experiment, target: ads-emofilm}
+  - {type: tested-by-experiment, target: clad-emofilm}
   - {type: in-program, target: program-clad}
 description: |
-  EFR latent factors (negative/positive emotion recognition) are a strong CMI component; negative
-  emotion sensitivity rises with age (beta=0.35), positive-emotion recognition declines with puberty.
+  EFR latent factors (W1-3) are a strong CMI component; negative-emotion sensitivity rises with age.
+  EFR deviation indexes an emotion-processing phenotype predicting W4 EmoFilm synchrony.
 ---

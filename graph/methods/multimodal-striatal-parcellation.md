@@ -1,16 +1,16 @@
 ---
 id: multimodal-striatal-parcellation
 type: method
-name: "Multimodal (functional + diffusion) striatal parcellation"
+name: "Multimodal striatal parcellation (functional + diffusion)"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:133796b9b354d7e4df8f1d89ed4cd5312a8ddda9db00616b3717bb0e3b958568
+provenance-hash: sha256:6641dfc3897f649ebe790089aad85eb526c48d8b40b6ff561e1deab8a008218c
 tool: "ICA + diffusion fusion"
 version: "0.1"
 edges:
-  - {type: composes, target: masked-ica-parcellation}
-  - {type: composes, target: seeded-diffusion-connectivity}
+  - {type: composes, target: clad-masked-ica-w4}
+  - {type: composes, target: clad-dwi-w4}
   - {type: in-program, target: program-clad}
 description: |
-  Fuse functional group-ICA parcels with seed-based diffusion connectivity to define emotion vs control striatal parcels.
+  Fuse W4 functional group-ICA parcels with seed-based diffusion connectivity (emotion vs control parcels).
 ---

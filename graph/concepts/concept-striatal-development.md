@@ -1,21 +1,22 @@
 ---
 id: concept-striatal-development
 type: concept
-name: "Multimodal striatal functional parcellation across development"
+name: "Striatal functional parcellation across development (W1-3) + W4 validation"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:583abeb0b6003350ef80466b8afd2262efbab01269209ce7a819bdf10d9f3c54
-statement: "Masked group-ICA functional parcellation fused with seed-based diffusion connectivity recovers limbic (emotion) and associative (control) striatal parcels; medial-caudate<->prefrontal connectivity relates to outcomes and predicts substance-use initiation 18 months later."
+provenance-hash: sha256:3e9bfed0b48e9454befc7d10303a9b0100023eda0554e3da0636fa39c747c562
+statement: "The masked group-ICA striatal parcellation was done with WAVES 1-3 (parent-canonical in ADS)."
 concept-kind: "research-question"
 status: "under-investigation"
 falsifiable: true
 edges:
-  - {type: tested-by-experiment, target: ads-rest}
-  - {type: tested-by-experiment, target: ads-dwi-hardi}
+  - {type: tested-by-experiment, target: clad-rest}
+  - {type: tested-by-experiment, target: clad-dwi}
   - {type: cited-in, target: pub-eldamaty-striatal-parcellation}
   - {type: in-program, target: program-clad}
+  - {type: cross-project, target: "ads-glimmer:concept-striatum-parcellation", role: parent-canonical}
 description: |
-  Masked group-ICA functional parcellation fused with seed-based diffusion connectivity recovers
-  limbic (emotion) and associative (control) striatal parcels; medial-caudate<->prefrontal connectivity
-  relates to outcomes and predicts substance-use initiation 18 months later.
+  The masked group-ICA striatal parcellation was done with WAVES 1-3 (parent-canonical in ADS). Wave-4
+  was NOT complete and used a DIFFERENT scanner/data — so the CLAD question is validating + applying the W1-3
+  parcels to W4 (multimodal: functional + seeded diffusion).
 ---

@@ -1,14 +1,14 @@
 ---
 id: ads-temporal-discounting
 type: experiment
-name: "Temporal Delay Discounting (TD)"
+name: "Temporal Delay Discounting (TD) [W1-3, inherited]"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:e9b378f184a555b20041e43dc1ac2652fe936e44461d7e8640841f6bd72948f7
-task-name: "temporal-discounting"
+provenance-hash: sha256:c719646dbba8563b1e1b2fc52e96f662a35aedbfd15546fcc9181a36c4cb9301
+task-name: "ads-temporal-discounting"
 edges:
-  - {type: analyzed-by, target: cfa-sem}
   - {type: in-program, target: program-clad}
+  - {type: cross-project, target: "ads-glimmer:experiment-temporal-discounting", role: inherited-from-parent}
 description: |
-  Preference for immediate vs delayed rewards; AUC of indifference values.
+  W1-3 ADS paradigm (delay discounting). Inherited.
 ---

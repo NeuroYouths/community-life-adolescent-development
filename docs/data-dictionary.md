@@ -21,12 +21,14 @@ CONTROLLED and live in the private backend). Canonical source: `ads-master-dicti
 |-----------|------|-----------------|
 | FreeSurfer recons | cortical surface reconstruction + morphometry (thickness, area, curvature) | `freesurfer-recon` → `data/derivatives/freesurfer/` |
 | fMRIPrep | standardized BOLD/anat preprocessing, normalized to the SST | `fmriprep` → `data/derivatives/fmriprep/` |
-| NICAP55 SST | study-specific multicontrast (T1w/T2w) developmental template (normalization target) | `nicap55-template` → `standard-nicap55-sst`, `data/derivatives/template-nicap55/` |
-| T1w/T2w myelin | **T1w/T2w ratio + T2 gray/white-matter boundary** surface contrast (HCP-style) — the second structural axis alongside DWI | `myelin-t1t2-mapping` → `data/derivatives/myelin-t1t2/` |
-| DWI tractography | seed-based structural connectivity fingerprints | `seeded-diffusion-connectivity` → `data/derivatives/dwi-tractography/` |
+| **ads56 SST** (W1–3) | ADS Wave-1–3 study-specific multicontrast (T1w/T2w/FA) developmental template; **inherited** from ADS (`ads-glimmer:standard-ads56-sst`) | `ads-glimmer:method-ads-sst-mvtc2` |
+| **Wave-4 SST** (CLAD-owned) | study-specific template built from **Wave-4 data** (different scanner) — the W4 normalization target | `clad-wave4-sst` → `standard-clad-wave4-sst`, `data/derivatives/template-nicap55/` |
+| T1w/T2w myelin | **T1w/T2w ratio + T2 gray/white-matter boundary** surface contrast (HCP-style) — the second structural axis alongside DWI | `clad-myelin-t1t2` → `data/derivatives/myelin-t1t2/` |
+| DWI tractography | seed-based structural connectivity fingerprints | `clad-dwi-w4` → `data/derivatives/dwi-tractography/` |
 
-**Comparison anchors:** Human Connectome Project (HCP / HCP-D; `standard-hcp`) for myelin mapping +
-pulse-sequence lineage (EmoFilm is an HCP-pulse replica), and NICAP (the NICAP55 SST lineage). HCP-D is
-NDA-gated → metadata-only, not CLAD data.
+**Comparison anchors (external):** **HCP / HCP-D** (`standard-hcp`) for myelin mapping + pulse-sequence
+lineage (EmoFilm is an HCP-pulse replica), and **NICAP** — a separate 3rd-party validation dataset
+(`standard-nicap`) whose **NICAP55** template (`standard-nicap55`) is a comparison template (NOT the ADS
+SST). HCP-D + NICAP are external → metadata-only, not CLAD data.
 
 Full per-variable coding to be imported from the dictionary spreadsheet in the data pass.

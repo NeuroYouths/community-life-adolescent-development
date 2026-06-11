@@ -1,14 +1,15 @@
 ---
 id: lasso-age-prediction
 type: method
-name: "Regularized (ridge/LASSO) age prediction"
+name: "Ridge/LASSO age prediction [inherited]"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:0ed3bbf37fb3f5203851c40346fd061a16cdbba4358f00919c90389a626b4e62
+provenance-hash: sha256:5078393a28a5684de42c37d5f1d5d7a0afbdefe66f025cbd7203f9264b6b9837
 tool: "glmnet (R)"
 version: "4.0-2"
 edges:
   - {type: in-program, target: program-clad}
+  - {type: cross-project, target: "ads-glimmer:method-lasso-age-prediction", role: inherited-from-parent}
 description: |
-  Cross-validated regularized regression of latent factors on age; residual = CMI.
+  Inherited W1-3 CMI age model; residual = CMI.
 ---

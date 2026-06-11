@@ -1,14 +1,15 @@
 ---
 id: cfa-sem
 type: method
-name: "Confirmatory factor analysis + structural equation modeling"
+name: "CFA + SEM (latent cognitive factors) [inherited]"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:01f959c076d0d9a33332b160b703e513c7b5afca47cfbbf1d0b00ba5bd18155b
+provenance-hash: sha256:9bb43e322c8932ff68b38d644d362f93ad58239a7f367d3f70c9da6a11d528b2
 tool: "lavaan (R)"
 version: "0.6-6"
 edges:
   - {type: in-program, target: program-clad}
+  - {type: cross-project, target: "ads-glimmer:method-cfa-sem", role: inherited-from-parent}
 description: |
-  CFA to estimate latent cognitive factors; SEM for factor interactions and mediation.
+  Inherited W1-3 CMI method.
 ---

@@ -1,16 +1,14 @@
 ---
 id: ads-gonogo
 type: experiment
-name: "Go/NoGo response-inhibition task"
+name: "Go/NoGo [W1-3, inherited]"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:f8b2b967f10543ca37ec74e16a09295dbacaca53f26d579c70b5928225dc7017
-task-name: "gonogo"
-conditions: ["go", "nogo"]
+provenance-hash: sha256:e99a1e82c69d50461f39bf9254bcf11056b03691e5d1d09a42f8b39ac07dc631
+task-name: "ads-gonogo"
 edges:
-  - {type: realized-by, target: dataset-clad-bids-wave4}
-  - {type: analyzed-by, target: gonogo-frontostriatal-glm-gppi}
   - {type: in-program, target: program-clad}
+  - {type: cross-project, target: "ads-glimmer:experiment-gonogo", role: inherited-from-parent}
 description: |
-  Response inhibition during fMRI; frontostriatal (caudate<->DLPFC/IFG) activation + connectivity.
+  W1-3 ADS in-scanner inhibition paradigm. Inherited; method applies forward to W4 rest/EmoFilm.
 ---

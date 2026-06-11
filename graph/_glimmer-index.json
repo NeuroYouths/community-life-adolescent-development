@@ -5,7 +5,7 @@
   "created": "2026-06-11T00:00:00+00:00",
   "description": "clad-glimmer research-object graph for the Community Life & Adolescent Development study (a subproject of ADS).",
   "upstream-graph": "https://github.com/hebbianloop/ads-glimmer-graph (parent; same cohort)",
-  "node-count": 51,
+  "node-count": 57,
   "nodes": [
     {
       "id": "concept-corticostriatal-convergence",
@@ -43,6 +43,11 @@
       "path": "concepts/concept-neurocognitive-maturity.md"
     },
     {
+      "id": "concept-scanner-harmonization",
+      "type": "concept",
+      "path": "concepts/concept-scanner-harmonization.md"
+    },
+    {
       "id": "concept-striatal-development",
       "type": "concept",
       "path": "concepts/concept-striatal-development.md"
@@ -58,6 +63,11 @@
       "path": "concepts/concept-violence-cascade.md"
     },
     {
+      "id": "concept-w13-analytic-validation",
+      "type": "concept",
+      "path": "concepts/concept-w13-analytic-validation.md"
+    },
+    {
       "id": "dataset-clad-bids-w13",
       "type": "dataset",
       "path": "datasets/dataset-clad-bids-w13.md"
@@ -68,14 +78,19 @@
       "path": "datasets/dataset-clad-bids-wave4.md"
     },
     {
-      "id": "ads-anat-mprage",
+      "id": "ads-bisbas",
       "type": "experiment",
-      "path": "experiments/ads-anat-mprage.md"
+      "path": "experiments/ads-bisbas.md"
     },
     {
-      "id": "ads-anat-t2",
+      "id": "ads-community-life",
       "type": "experiment",
-      "path": "experiments/ads-anat-t2.md"
+      "path": "experiments/ads-community-life.md"
+    },
+    {
+      "id": "ads-context-battery",
+      "type": "experiment",
+      "path": "experiments/ads-context-battery.md"
     },
     {
       "id": "ads-cpt",
@@ -83,9 +98,9 @@
       "path": "experiments/ads-cpt.md"
     },
     {
-      "id": "ads-dwi-hardi",
+      "id": "ads-dusi-r",
       "type": "experiment",
-      "path": "experiments/ads-dwi-hardi.md"
+      "path": "experiments/ads-dusi-r.md"
     },
     {
       "id": "ads-efr",
@@ -93,19 +108,14 @@
       "path": "experiments/ads-efr.md"
     },
     {
-      "id": "ads-emofilm",
+      "id": "ads-emofilm-paradigm",
       "type": "experiment",
-      "path": "experiments/ads-emofilm.md"
+      "path": "experiments/ads-emofilm-paradigm.md"
     },
     {
       "id": "ads-gonogo",
       "type": "experiment",
       "path": "experiments/ads-gonogo.md"
-    },
-    {
-      "id": "ads-rest",
-      "type": "experiment",
-      "path": "experiments/ads-rest.md"
     },
     {
       "id": "ads-temporal-discounting",
@@ -118,34 +128,79 @@
       "path": "experiments/ads-wof.md"
     },
     {
+      "id": "clad-anat-dir",
+      "type": "experiment",
+      "path": "experiments/clad-anat-dir.md"
+    },
+    {
+      "id": "clad-anat-mprage",
+      "type": "experiment",
+      "path": "experiments/clad-anat-mprage.md"
+    },
+    {
+      "id": "clad-anat-t2-space",
+      "type": "experiment",
+      "path": "experiments/clad-anat-t2-space.md"
+    },
+    {
+      "id": "clad-dwi",
+      "type": "experiment",
+      "path": "experiments/clad-dwi.md"
+    },
+    {
+      "id": "clad-emofilm",
+      "type": "experiment",
+      "path": "experiments/clad-emofilm.md"
+    },
+    {
+      "id": "clad-rest",
+      "type": "experiment",
+      "path": "experiments/clad-rest.md"
+    },
+    {
       "id": "cfa-sem",
       "type": "method",
       "path": "methods/cfa-sem.md"
     },
     {
-      "id": "dwi-preprocessing",
+      "id": "clad-denoising-w4",
       "type": "method",
-      "path": "methods/dwi-preprocessing.md"
+      "path": "methods/clad-denoising-w4.md"
     },
     {
-      "id": "fmriprep",
+      "id": "clad-dwi-w4",
       "type": "method",
-      "path": "methods/fmriprep.md"
+      "path": "methods/clad-dwi-w4.md"
     },
     {
-      "id": "freesurfer-recon",
+      "id": "clad-emofilm-bold-amplitude",
       "type": "method",
-      "path": "methods/freesurfer-recon.md"
+      "path": "methods/clad-emofilm-bold-amplitude.md"
     },
     {
-      "id": "gonogo-frontostriatal-glm-gppi",
+      "id": "clad-emofilm-isc",
       "type": "method",
-      "path": "methods/gonogo-frontostriatal-glm-gppi.md"
+      "path": "methods/clad-emofilm-isc.md"
     },
     {
-      "id": "intersubject-synchrony",
+      "id": "clad-fmriprep-w4",
       "type": "method",
-      "path": "methods/intersubject-synchrony.md"
+      "path": "methods/clad-fmriprep-w4.md"
+    },
+    {
+      "id": "clad-masked-ica-w4",
+      "type": "method",
+      "path": "methods/clad-masked-ica-w4.md"
+    },
+    {
+      "id": "clad-myelin-t1t2",
+      "type": "method",
+      "path": "methods/clad-myelin-t1t2.md"
+    },
+    {
+      "id": "clad-wave4-sst",
+      "type": "method",
+      "path": "methods/clad-wave4-sst.md"
     },
     {
       "id": "lasso-age-prediction",
@@ -153,34 +208,9 @@
       "path": "methods/lasso-age-prediction.md"
     },
     {
-      "id": "masked-ica-parcellation",
-      "type": "method",
-      "path": "methods/masked-ica-parcellation.md"
-    },
-    {
-      "id": "method-emofilm-bold-amplitude",
-      "type": "method",
-      "path": "methods/method-emofilm-bold-amplitude.md"
-    },
-    {
       "id": "multimodal-striatal-parcellation",
       "type": "method",
       "path": "methods/multimodal-striatal-parcellation.md"
-    },
-    {
-      "id": "myelin-t1t2-mapping",
-      "type": "method",
-      "path": "methods/myelin-t1t2-mapping.md"
-    },
-    {
-      "id": "nicap55-template",
-      "type": "method",
-      "path": "methods/nicap55-template.md"
-    },
-    {
-      "id": "seeded-diffusion-connectivity",
-      "type": "method",
-      "path": "methods/seeded-diffusion-connectivity.md"
     },
     {
       "id": "split-half-reproducibility",
@@ -253,14 +283,14 @@
       "path": "standards/standard-bids.md"
     },
     {
+      "id": "standard-clad-wave4-sst",
+      "type": "standard",
+      "path": "standards/standard-clad-wave4-sst.md"
+    },
+    {
       "id": "standard-hcp",
       "type": "standard",
       "path": "standards/standard-hcp.md"
-    },
-    {
-      "id": "standard-nicap55-sst",
-      "type": "standard",
-      "path": "standards/standard-nicap55-sst.md"
     }
   ]
 }

@@ -4,16 +4,16 @@ type: concept
 name: "EFR phenotype -> EmoFilm intersubject synchrony"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:d5133ebb602e1dbb0df42baadca5b3e0af55a6d67352664e29586529d3f216c3
-statement: "Subjects whose EFR latent factor deviates similarly from the population show more similar neural synchrony (ISC) during naturalistic EmoFilm viewing; the emotion-axis behavioral->functional bridge."
+provenance-hash: sha256:a4948048c9c2e245d4180b36abc2de946cc85a5db3b4a6a251411c7fac580cf2
+statement: "Subjects with similar EFR-latent deviation (W1-3) show more similar neural synchrony (ISC) during W4 EmoFilm viewing; the emotion-axis behavior(W1-3)->function(W4) bridge."
 concept-kind: "research-question"
 status: "open"
 falsifiable: true
 edges:
-  - {type: tested-by-experiment, target: ads-emofilm}
+  - {type: tested-by-experiment, target: clad-emofilm}
   - {type: tested-by-experiment, target: ads-efr}
   - {type: in-program, target: program-clad}
 description: |
-  Subjects whose EFR latent factor deviates similarly from the population show more similar neural
-  synchrony (ISC) during naturalistic EmoFilm viewing; the emotion-axis behavioral->functional bridge.
+  Subjects with similar EFR-latent deviation (W1-3) show more similar neural synchrony (ISC) during W4
+  EmoFilm viewing; the emotion-axis behavior(W1-3)->function(W4) bridge.
 ---
