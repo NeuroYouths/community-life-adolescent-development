@@ -1,25 +1,31 @@
-# docs/protocol
+# docs/protocol — QC'd against the canonical NIJ protocol (NeuroYouths Box)
 
-OPEN parts of the scan/visit protocol (Visit-7 / Wave-4). Participant-facing and identifiable materials
-stay in the private backend.
+Study (IRB v4 title): *"fMRI Study of Adverse Stressors Precluding Development of Cognitive-Emotional
+Competence in Adolescence"* (NIJ 2016-R2-CX-0019). Multi-site: **Georgetown CFMI** (scanning) +
+**University of Maryland School of Medicine** (recruitment/call center). High-risk oversample via DUSI
+cutoff ≥5 (to ensure alcohol-misuse cases by Wave 3). QC sources: `ADS-protocol.pdf` (Siemens MAGNETOM
+**TrioTim** sequence card, W1–3), `IRB-Protocol-v4.docx`, `ADS-Field-Manual.docx` (NeuroYouths Box).
 
-## Imaging protocol (de-identified summary)
-Siemens 3T acquisition per session:
-- **Structural** — T1w MPRAGE + **T2w**. The T1w/T2w pair gives the **T1w/T2w ratio and the T2
-  gray/white-matter boundary** (HCP-style myelin-sensitive contrast) — a worthwhile structural readout
-  for the emotion/control networks, complementary to DWI. Surfaces from FreeSurfer/FastSurfer recons.
-- **Functional** — resting-state BOLD, **EmoFilm** (naturalistic emotional film; HCP-pulse replica),
-  Go/NoGo.
-- **Diffusion** — DWI/HARDI + fieldmaps.
-- **Normalization** — W1–3 imaging registers to the **ads56** study-specific template (ADS W1–3 SST,
-  inherited); Wave-4 imaging registers to the **CLAD Wave-4 SST** (built from W4 data, different scanner),
-  not adult MNI.
+## MRI acquisition
+**Waves 1–3 (Siemens MAGNETOM TrioTim 3T):**
+- **Structural** — MPRAGE T1w (1 mm iso); **multi-TI DIR** (`AMRI` dual/single-inversion, TR 2000/3000, ~32 TIs); **multi-echo GRE** (`AMRI_mgre`, TE≈4 ms) → **T2\*/QSM iron** mapping (striatal iron). Localizer.
+- **Diffusion** — DWI/HARDI **80-dir**, b=1100 (`ep2d_diff`), 2.5 mm.
+- **Functional** — resting-state (`ep2d`, TR 2.28 s); **Wheel of Fortune ×3** runs; **Go/No-Go**; **Emotional Counting Stroop** (alcohol-related words). 3×3×3 mm, TR 2.5 s, GRAPPA ×2.
 
-## Comparison anchors (external)
-- **Human Connectome Project (HCP / HCP-D)** — reference protocol/pipelines for myelin mapping and
-  pulse-sequence lineage (EmoFilm is an HCP-pulse replica). HCP-D is NDA-gated; comparison only, not CLAD data.
-- **NICAP** — a *separate 3rd-party validation dataset/project*; its **NICAP55** template is a comparison
-  template (NOT the ADS SST). External comparison only.
+**Wave-4 (different scanner — "not complete, different data"):** T1w MPRAGE, **T2w SPACE**, **T2w FGATIR/DIR**, DWI/HARDI, fieldmaps, **EmoFilm** BOLD (HCP-pulse replica), resting-state. The T1w/T2w pair gives the **T1w/T2w myelin ratio + T2 gray/white-matter boundary**.
 
-Full protocol documents (scan parameters, visit checklists) are recovered from the offline lab archive in
-the data-migration pass; see [`../DATA-MANIFEST.md`](../DATA-MANIFEST.md).
+**Normalization** — W1–3 → **ads56** SST (inherited); W4 → **CLAD Wave-4 SST** (own scanner). Comparison anchors (external): **HCP/HCP-D**, **NICAP** (3rd-party dataset; its NICAP55 template).
+
+## Behavioral / cognitive battery
+- **In-scanner (W1–3)**: Wheel of Fortune (reward/risk), Go/No-Go (inhibition), Emotional Counting Stroop (affective interference).
+- **Off-scanner cognitive**: Temporal Discounting (delay discounting), **KBIT** (IQ: verbal/matrices/riddles); Emotional Face Recognition (NimStim) per the CMI paper.
+- **Surveys (ACASI/CAPI)**: **DUSI** (substance + violence-proneness; child direct + parent indirect), **BIS/BAS**, **Scale of Physical Development** (puberty/PDS), **AUDIT** (W2/W3), parent **BRIEF**, demographic + responsibility inventories.
+
+## Environmental / community-life assessment
+Exposure to violence (school + neighborhood), neighborhood structure, family structure/climate,
+and social-norm perceptions — the "Community Life" core driving the social-strain → violence cascade.
+
+> **Open item (needs your call):** the W1–3 scanner card + field manual list **EmoCountStroop**, not EmoFilm,
+> and EmoFilm appears only in the Wave-4 BIDS — so the evidence says **EmoFilm is a Wave-4 task**. This
+> conflicts with the PR comment ("EmoFilm w1-3 not 4"). Confirm and I'll finalize the wave attribution.
+> Exact instrument editions (neighborhood/family/violence-exposure scales) still to be pinned from the appendices.

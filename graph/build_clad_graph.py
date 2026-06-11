@@ -42,6 +42,7 @@ CROSS = {
     "ads-efr":                   [("ads-glimmer:experiment-efr", "inherited-from-parent")],
     "ads-temporal-discounting":  [("ads-glimmer:experiment-temporal-discounting", "inherited-from-parent")],
     "ads-gonogo":                [("ads-glimmer:experiment-gonogo", "inherited-from-parent")],
+    "ads-emocountstroop":        [("ads-glimmer:experiment-emocountstroop", "inherited-from-parent")],
     "ads-emofilm-paradigm":      [("ads-glimmer:experiment-emofilm-eprime", "inherited-from-parent")],
     # inherited battery + environmental/community-life assessment
     "ads-dusi-r":                [("ads-glimmer:experiment-dusi-r", "inherited-from-parent")],
@@ -171,9 +172,10 @@ node("concept-structural-myelin-convergence", "concept",
      {"concept-kind": "research-question", "status": "open", "falsifiable": True},
      [("tested-by-experiment", "clad-anat-mprage"), ("tested-by-experiment", "clad-anat-t2-space"),
       ("tested-by-experiment", "clad-anat-dir"), ("tested-by-experiment", "clad-dwi")],
-     """Flagship STRUCTURE arm: emotion/control networks differ structurally in DWI white-matter AND in
-T1w/T2w myelin + the T2 gray/white-matter boundary (incl. the DIR contrast). ads56 (W1-3 SST), the Wave-4
-SST, and the external NICAP/HCP templates are comparison anchors.""")
+     """Flagship STRUCTURE arm: emotion/control networks differ structurally across (a) DWI white-matter
+(HARDI 80-dir), (b) T1w/T2w myelin + the T2 gray/white-matter boundary (incl. the multi-TI DIR contrast),
+and (c) T2*/QSM iron (W1-3 multi-echo GRE; striatal iron). ads56 (W1-3 SST), the Wave-4 SST, and the
+external NICAP/HCP templates are comparison anchors.""")
 node("concept-emofilm-violence", "concept",
      "EmoFilm emotion-network response -> Wave-4 violence outcome",
      {"concept-kind": "research-question", "status": "open", "falsifiable": True},
@@ -200,12 +202,13 @@ for eid, nm, body in [
     ("ads-wof", "Wheel of Fortune (WOF) [W1-3, inherited]", "W1-3 ADS paradigm (risk/reward). Inherited."),
     ("ads-efr", "Emotional Face Recognition (EFR) [W1-3, inherited]", "W1-3 ADS paradigm (emotion recognition). Inherited; bridges to W4 EmoFilm synchrony."),
     ("ads-temporal-discounting", "Temporal Delay Discounting (TD) [W1-3, inherited]", "W1-3 ADS paradigm (delay discounting). Inherited."),
-    ("ads-gonogo", "Go/NoGo [W1-3, inherited]", "W1-3 ADS in-scanner inhibition paradigm. Inherited; method applies forward to W4 rest/EmoFilm."),
-    ("ads-emofilm-paradigm", "EmoFilm paradigm (E-Prime) [W1-3 origin, inherited]", "EmoFilm task design (ADS, W1-3 origin); the W4 acquisition is clad-emofilm."),
-    ("ads-dusi-r", "DUSI-R substance/violence screening [inherited]", "W1-4 survey; violence-proneness (DUSI-VP) + substance subscales. Inherited; the outcome measure."),
-    ("ads-bisbas", "BIS/BAS scales [inherited]", "W1-4 reinforcement-sensitivity (BAS-D mediates CMI->violence). Inherited."),
-    ("ads-context-battery", "Development+cognition+SES battery (PDS/KBIT) [inherited]", "W1-4: PDS, KBIT/IQ, BMI, SES. Inherited."),
-    ("ads-community-life", "Community-life / environmental assessment [inherited]", "W1-4 'Community Life' battery: neighborhood, family climate, exposure to violence, deviant-peer, attitudes-to-violence. Inherited; drives the violence cascade. (Instrument names pending protocol QC.)"),
+    ("ads-gonogo", "Go/NoGo [W1-3, inherited]", "W1-3 ADS in-scanner inhibition paradigm (1 run, ~4:25). Inherited; method applies forward to W4 rest/EmoFilm."),
+    ("ads-emocountstroop", "Emotional Counting Stroop [W1-3, inherited]", "W1-3 ADS in-scanner affective-interference task (alcohol-related words). Inherited; the W1-3 emotional-control paradigm (note: the W1-3 scanner protocol lists EmoCountStroop, NOT EmoFilm)."),
+    ("ads-emofilm-paradigm", "EmoFilm paradigm [wave attribution OPEN]", "EmoFilm task design. PROTOCOL QC: EmoFilm is absent from the W1-3 scanner card/field manual and present only in the W4 BIDS -> evidence says EmoFilm is WAVE-4 (clad-emofilm). Kept pending owner confirmation of the PR comment."),
+    ("ads-dusi-r", "DUSI substance/violence screening [inherited]", "W1-4 ACASI survey; the high-risk screener (cutoff>=5) + violence-proneness (DUSI-VP) + substance subscales (child direct; parent indirect). The outcome measure."),
+    ("ads-bisbas", "BIS/BAS scales [inherited]", "W1-4 reinforcement-sensitivity (approach/inhibition); BAS-D mediates CMI->violence. Inherited."),
+    ("ads-context-battery", "Development + cognition battery (Scale of Physical Development, KBIT, AUDIT, BRIEF) [inherited]", "W1-4: Scale of Physical Development (puberty), KBIT (IQ: verbal/matrices/riddles), AUDIT (W2/3), parent BRIEF, demographic + responsibility inventories. Inherited."),
+    ("ads-community-life", "Community-life / environmental assessment [inherited]", "W1-4 'Community Life' battery: exposure to violence (school + neighborhood), neighborhood structure, family structure/climate, social-norm perceptions. Inherited; drives the violence cascade. (Exact instrument editions pending appendix QC.)"),
 ]:
     node(eid, "experiment", nm, {"task-name": eid}, [], body)
 
