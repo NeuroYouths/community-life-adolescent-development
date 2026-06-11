@@ -20,6 +20,12 @@ onto distinct, identifiable striatal parcels** within its cortico-striatal loop:
 - **Emotion axis** → *limbic / ventral-striatal* parcels coupled to vmPFC / OFC / amygdala. EFR-latent
   deviation tracks **EmoFilm intersubject synchrony (ISC)** AND emotion-network **DWI** structure.
 
+**Structure arm — two converging structural measures.** Beyond DWI white-matter, the same emotion/control
+networks should show structural differences in **T1w/T2w myelin contrast and the T2 gray/white-matter
+boundary** (HCP-style myelin mapping over the FreeSurfer recons, normalized to the NICAP55 study-specific
+template). DWI tractography + T1w/T2w myelin are the two structural readouts; the **Human Connectome
+Project (HCP / HCP-D)** and **NICAP** are the comparison anchors. (Sub-concept `concept-structural-myelin-convergence`.)
+
 Both axes are recovered by **multimodal striatal parcellation** (functional group-ICA *fused with*
 seed-based diffusion connectivity); individual latent-factor deviation predicts the matching parcel's
 connectivity; and these predict **vulnerability outcomes** — consistent with the dissertation finding
@@ -28,9 +34,14 @@ initiation 18 months later and inversely tracks violence proneness.
 
 `decomposes-into` → the impulse-control sub-concepts (`concept-impulse-control-frontostriatal`,
 `concept-gonogo-inhibition`), the emotion sub-concepts (`concept-efr-individual-differences`,
-`concept-emofilm-synchrony`), plus `concept-neurocognitive-maturity` and `concept-striatal-development`.
-`tested-by-experiment` → ads-cpt, ads-gonogo, ads-efr, ads-emofilm, ads-dwi-hardi. Planned output:
+`concept-emofilm-synchrony`), the structure sub-concept (`concept-structural-myelin-convergence`), plus
+`concept-neurocognitive-maturity` and `concept-striatal-development`. `tested-by-experiment` → ads-cpt,
+ads-gonogo, ads-efr, ads-emofilm, ads-dwi-hardi, ads-anat-mprage, ads-anat-t2. Planned output:
 `pub-corticostriatal-convergence`.
+
+> **Project context.** CLAD is a **subproject of ADS** (same cohort) — `program-clad` `cross-project`→
+> `ads-glimmer:program-ads`. Nodes shared with / inherited from the parent ADS graph carry a
+> `cross-project` edge to the ADS-canonical id; see [`migration-ads-clad.md`](migration-ads-clad.md).
 
 ---
 

@@ -2,10 +2,13 @@
 id: org-georgetown-university
 type: organization
 name: "Georgetown University"
-created: 2026-06-10T00:00:00+00:00
-modified: 2026-06-10T00:00:00+00:00
-provenance-hash: sha256:9f2fb82780876c856eb15c2f720c44d3fd198679bca5c80832af72985d0d3c0c
+created: 2026-06-11T00:00:00+00:00
+modified: 2026-06-11T00:00:00+00:00
+provenance-hash: sha256:8e26373fa3eebc4048c733c5dafdd44a1e7d142cba4fd805d22d8efd3081481b
 org-kind: "institution"
+edges:
+  - {type: in-program, target: program-clad}
+  - {type: cross-project, target: "ads-glimmer:org-georgetown-university", role: inherited-from-parent}
 description: |
-  Degree-granting institution. Shared with ads-glimmer.
+  Degree-granting institution. Inherited from parent ADS.
 ---

@@ -1,0 +1,14 @@
+profile: clad
+standard: CLAD cohort-level convention
+status: local
+description: >
+  Cohort/study-level dataset pointers in clad-glimmer are not single-subject BIDS datasets, so they do
+  not carry the neuroimaging profile's per-subject fields (subject-id/session/modality). This profile
+  augments `dataset` with optional cohort fields only — no required fields — for nodes that set
+  `domain: clad`.
+augments:
+  dataset:
+    optional:
+      bids-scope:    string      # e.g. "wave-4 cohort", "waves 1-3 cohort"
+      tier:          string      # OPEN-deid / CONTROLLED / PHI
+      bytes-status:  string      # e.g. "deferred"
