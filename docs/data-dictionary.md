@@ -14,6 +14,19 @@ CONTROLLED and live in the private backend). Canonical source: `ads-master-dicti
 | Development | age, PDS (puberty), BMI, sex | anthropometrics; Pubertal Development Scale |
 | Cognitive | composite IQ | KBIT |
 | Context | SES (income + education z-composite) | caregiver interview |
-| Imaging | T1w, T2w, BOLD (rest/EmoFilm/GoNoGo), DWI/HARDI, fmap | Siemens 3T |
+| Imaging (acquired) | T1w MPRAGE, T2w, BOLD (rest/EmoFilm/GoNoGo), DWI/HARDI, fmap | Siemens 3T |
+
+## Structural & template derivatives (the structure arm)
+| Derivative | What | Method → output |
+|-----------|------|-----------------|
+| FreeSurfer recons | cortical surface reconstruction + morphometry (thickness, area, curvature) | `freesurfer-recon` → `data/derivatives/freesurfer/` |
+| fMRIPrep | standardized BOLD/anat preprocessing, normalized to the SST | `fmriprep` → `data/derivatives/fmriprep/` |
+| NICAP55 SST | study-specific multicontrast (T1w/T2w) developmental template (normalization target) | `nicap55-template` → `standard-nicap55-sst`, `data/derivatives/template-nicap55/` |
+| T1w/T2w myelin | **T1w/T2w ratio + T2 gray/white-matter boundary** surface contrast (HCP-style) — the second structural axis alongside DWI | `myelin-t1t2-mapping` → `data/derivatives/myelin-t1t2/` |
+| DWI tractography | seed-based structural connectivity fingerprints | `seeded-diffusion-connectivity` → `data/derivatives/dwi-tractography/` |
+
+**Comparison anchors:** Human Connectome Project (HCP / HCP-D; `standard-hcp`) for myelin mapping +
+pulse-sequence lineage (EmoFilm is an HCP-pulse replica), and NICAP (the NICAP55 SST lineage). HCP-D is
+NDA-gated → metadata-only, not CLAD data.
 
 Full per-variable coding to be imported from the dictionary spreadsheet in the data pass.

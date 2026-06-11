@@ -1,10 +1,11 @@
 {
-  "schema": "glimmer/v0.3",
+  "schema": "glimmer/v0.4.0",
   "dataset-name": "clad-glimmer",
   "default-domain": "neuroimaging",
-  "created": "2026-06-10T00:00:00+00:00",
-  "description": "clad-glimmer research-object graph for the Community Life & Adolescent Development study.",
-  "upstream-graph": "https://github.com/hebbianloop/ads-glimmer-graph (sibling; same cohort)",
+  "created": "2026-06-11T00:00:00+00:00",
+  "description": "clad-glimmer research-object graph for the Community Life & Adolescent Development study (a subproject of ADS).",
+  "upstream-graph": "https://github.com/hebbianloop/ads-glimmer-graph (parent; same cohort)",
+  "node-count": 51,
   "nodes": [
     {
       "id": "concept-corticostriatal-convergence",
@@ -47,6 +48,11 @@
       "path": "concepts/concept-striatal-development.md"
     },
     {
+      "id": "concept-structural-myelin-convergence",
+      "type": "concept",
+      "path": "concepts/concept-structural-myelin-convergence.md"
+    },
+    {
       "id": "concept-violence-cascade",
       "type": "concept",
       "path": "concepts/concept-violence-cascade.md"
@@ -60,6 +66,16 @@
       "id": "dataset-clad-bids-wave4",
       "type": "dataset",
       "path": "datasets/dataset-clad-bids-wave4.md"
+    },
+    {
+      "id": "ads-anat-mprage",
+      "type": "experiment",
+      "path": "experiments/ads-anat-mprage.md"
+    },
+    {
+      "id": "ads-anat-t2",
+      "type": "experiment",
+      "path": "experiments/ads-anat-t2.md"
     },
     {
       "id": "ads-cpt",
@@ -142,9 +158,19 @@
       "path": "methods/masked-ica-parcellation.md"
     },
     {
+      "id": "method-emofilm-bold-amplitude",
+      "type": "method",
+      "path": "methods/method-emofilm-bold-amplitude.md"
+    },
+    {
       "id": "multimodal-striatal-parcellation",
       "type": "method",
       "path": "methods/multimodal-striatal-parcellation.md"
+    },
+    {
+      "id": "myelin-t1t2-mapping",
+      "type": "method",
+      "path": "methods/myelin-t1t2-mapping.md"
     },
     {
       "id": "nicap55-template",
@@ -192,6 +218,11 @@
       "path": "personas/persona-shady-el-damaty.md"
     },
     {
+      "id": "program-clad",
+      "type": "program",
+      "path": "programs/program-clad.md"
+    },
+    {
       "id": "pub-corticostriatal-convergence",
       "type": "publication",
       "path": "publications/pub-corticostriatal-convergence.md"
@@ -215,6 +246,21 @@
       "id": "pub-eldamaty-violence-cascade",
       "type": "publication",
       "path": "publications/pub-eldamaty-violence-cascade.md"
+    },
+    {
+      "id": "standard-bids",
+      "type": "standard",
+      "path": "standards/standard-bids.md"
+    },
+    {
+      "id": "standard-hcp",
+      "type": "standard",
+      "path": "standards/standard-hcp.md"
+    },
+    {
+      "id": "standard-nicap55-sst",
+      "type": "standard",
+      "path": "standards/standard-nicap55-sst.md"
     }
   ]
 }
