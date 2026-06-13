@@ -2,7 +2,8 @@
 
 Study (IRB v4 title): *"fMRI Study of Adverse Stressors Precluding Development of Cognitive-Emotional
 Competence in Adolescence"* (NIJ 2016-R2-CX-0019). Multi-site: **Georgetown CFMI** (scanning) +
-**University of Maryland School of Medicine** (recruitment/call center). High-risk oversample via DUSI
+**University of Maryland School of Medicine** (recruitment/call center); co-mentors Diana Fishbein and
+Emma Rose at the **University of Pennsylvania**. High-risk oversample via DUSI
 cutoff ≥5 (to ensure alcohol-misuse cases by Wave 3). QC sources: `ADS-protocol.pdf` (Siemens MAGNETOM
 **TrioTim** sequence card, W1–3), `IRB-Protocol-v4.docx`, `ADS-Field-Manual.docx` (NeuroYouths Box).
 
@@ -17,9 +18,12 @@ cutoff ≥5 (to ensure alcohol-misuse cases by Wave 3). QC sources: `ADS-protoco
 **Normalization** — W1–3 → **ads56** SST (inherited); W4 → **CLAD Wave-4 SST** (own scanner). Comparison anchors (external): **HCP/HCP-D**, **NICAP** (3rd-party dataset; its NICAP55 template).
 
 ## Behavioral / cognitive battery
-- **In-scanner (W1–3)**: Wheel of Fortune (reward/risk), Go/No-Go (inhibition), Emotional Counting Stroop (affective interference).
-- **Off-scanner cognitive**: Temporal Discounting (delay discounting), **KBIT** (IQ: verbal/matrices/riddles); Emotional Face Recognition (NimStim) per the CMI paper.
-- **Surveys (ACASI/CAPI)**: **DUSI** (substance + violence-proneness; child direct + parent indirect), **BIS/BAS**, **Scale of Physical Development** (puberty/PDS), **AUDIT** (W2/W3), parent **BRIEF**, demographic + responsibility inventories.
+Confirmed against **`ADS-MASTER-SHEET.xlsx`** ("Data Consolidation Status" task×wave matrix, W1–3):
+- **In-scanner (W1)**: Wheel of Fortune (×3 runs, reward/risk), Go/No-Go (GNG, inhibition), Emotional Counting Stroop (EmoStroop, affective interference) + resting-state.
+- **Off-scanner cognitive (W1–3)**: **ERT** (Emotion Recognition Task, NimStim — the CMI "EFR"), Temporal Discounting (TD), **KBIT** (IQ), and an **executive/memory battery — RAVLT** (verbal memory), **Trail Making** (set-shifting), **Spatial Working Memory (SWM)** + **Stockings of Cambridge (SoC)** (CANTAB).
+- **Child surveys (ACASI/CAPI)**: **DUSI** (scored all 3 waves; substance + violence-proneness; high-risk screener cutoff ≥5), **BIS/BAS**, **Scale of Physical Development** (puberty), **TAD** (tobacco/alcohol/drug, W2), AUDIT, Sleep, Moderators, Responsibility, MAUDIT, Handedness.
+- **Parent surveys**: **BRIEF**, DUSI (W1), **Family History** (W1), Demographics, Responsibility.
+- Demographics show **V1–V6** visits across the longitudinal design; EmoFilm + the Wave-4 acquisitions are the NIJ Visit-7 add-on (different scanner).
 
 ## Environmental / community-life assessment
 Exposure to violence (school + neighborhood), neighborhood structure, family structure/climate,

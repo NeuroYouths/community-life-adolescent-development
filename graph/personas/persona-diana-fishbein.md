@@ -4,10 +4,12 @@ type: persona
 name: "Diana H. Fishbein"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:66dae659e62e724d85beb1f4fe39891d9cf8565603563f742aeeaecce9993581
+provenance-hash: sha256:8041bc7977712de61fe99a0a36602d440a18b9bf63a0b8d343193524f961ec79
 persona-kind: "researcher"
 edges:
+  - {type: affiliated-with, target: org-upenn}
   - {type: in-program, target: program-clad}
+  - {type: cross-project, target: "ads-glimmer:persona-diana-fishbein", role: inherited-from-parent}
 description: |
-  Co-mentor (Penn State / UNC); translational prevention.
+  Co-mentor; translational prevention. At the University of Pennsylvania. Inherited from parent ADS.
 ---

@@ -1,14 +1,14 @@
 ---
 id: ads-efr
 type: experiment
-name: "Emotional Face Recognition (EFR) [W1-3, inherited]"
+name: "Emotion Recognition Task (ERT) [W1-2, inherited]"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:151fde636de7db4b55f9776fd7dbdb5c1d89f3dc748cc032fc608c810688c262
+provenance-hash: sha256:30fa82a0379a5c63e862ce84cfd4f6f284aa31bc5d2b540c399cc82b400560dc
 task-name: "ads-efr"
 edges:
   - {type: in-program, target: program-clad}
   - {type: cross-project, target: "ads-glimmer:experiment-efr", role: inherited-from-parent}
 description: |
-  W1-3 ADS paradigm (emotion recognition). Inherited; bridges to W4 EmoFilm synchrony.
+  W1-2 emotion-recognition task (master sheet: ERT; CMI 'EFR') using NimStim faces. Inherited; bridges to W4 EmoFilm synchrony.
 ---

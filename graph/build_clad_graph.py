@@ -43,7 +43,10 @@ CROSS = {
     "ads-temporal-discounting":  [("ads-glimmer:experiment-temporal-discounting", "inherited-from-parent")],
     "ads-gonogo":                [("ads-glimmer:experiment-gonogo", "inherited-from-parent")],
     "ads-emocountstroop":        [("ads-glimmer:experiment-emocountstroop", "inherited-from-parent")],
-    "ads-emofilm-paradigm":      [("ads-glimmer:experiment-emofilm-eprime", "inherited-from-parent")],
+    "ads-cantab-exec":           [("ads-glimmer:experiment-cantab-exec", "inherited-from-parent")],
+    "persona-diana-fishbein":    [("ads-glimmer:persona-diana-fishbein", "inherited-from-parent")],
+    "persona-emma-rose":         [("ads-glimmer:persona-emma-rose", "inherited-from-parent")],
+    "org-upenn":                 [("ads-glimmer:org-upenn", "inherited-from-parent")],
     # inherited battery + environmental/community-life assessment
     "ads-dusi-r":                [("ads-glimmer:experiment-dusi-r", "inherited-from-parent")],
     "ads-bisbas":                [("ads-glimmer:experiment-bisbas", "inherited-from-parent")],
@@ -198,17 +201,17 @@ scanner/sequence differences (own Wave-4 SST + cross-scanner QC) before pooling 
 
 # ---------------- INHERITED W1-3 paradigms (ADS-owned; cross-project injected) ----------------
 for eid, nm, body in [
-    ("ads-cpt", "Continuous Performance Task (CPT) [W1-3, inherited]", "W1-3 ADS paradigm (inhibitory control). Inherited; predicts W4 outcomes."),
-    ("ads-wof", "Wheel of Fortune (WOF) [W1-3, inherited]", "W1-3 ADS paradigm (risk/reward). Inherited."),
-    ("ads-efr", "Emotional Face Recognition (EFR) [W1-3, inherited]", "W1-3 ADS paradigm (emotion recognition). Inherited; bridges to W4 EmoFilm synchrony."),
-    ("ads-temporal-discounting", "Temporal Delay Discounting (TD) [W1-3, inherited]", "W1-3 ADS paradigm (delay discounting). Inherited."),
-    ("ads-gonogo", "Go/NoGo [W1-3, inherited]", "W1-3 ADS in-scanner inhibition paradigm (1 run, ~4:25). Inherited; method applies forward to W4 rest/EmoFilm."),
-    ("ads-emocountstroop", "Emotional Counting Stroop [W1-3, inherited]", "W1-3 ADS in-scanner affective-interference task (alcohol-related words). Inherited; the W1-3 emotional-control paradigm (note: the W1-3 scanner protocol lists EmoCountStroop, NOT EmoFilm)."),
-    ("ads-emofilm-paradigm", "EmoFilm paradigm [wave attribution OPEN]", "EmoFilm task design. PROTOCOL QC: EmoFilm is absent from the W1-3 scanner card/field manual and present only in the W4 BIDS -> evidence says EmoFilm is WAVE-4 (clad-emofilm). Kept pending owner confirmation of the PR comment."),
-    ("ads-dusi-r", "DUSI substance/violence screening [inherited]", "W1-4 ACASI survey; the high-risk screener (cutoff>=5) + violence-proneness (DUSI-VP) + substance subscales (child direct; parent indirect). The outcome measure."),
-    ("ads-bisbas", "BIS/BAS scales [inherited]", "W1-4 reinforcement-sensitivity (approach/inhibition); BAS-D mediates CMI->violence. Inherited."),
-    ("ads-context-battery", "Development + cognition battery (Scale of Physical Development, KBIT, AUDIT, BRIEF) [inherited]", "W1-4: Scale of Physical Development (puberty), KBIT (IQ: verbal/matrices/riddles), AUDIT (W2/3), parent BRIEF, demographic + responsibility inventories. Inherited."),
-    ("ads-community-life", "Community-life / environmental assessment [inherited]", "W1-4 'Community Life' battery: exposure to violence (school + neighborhood), neighborhood structure, family structure/climate, social-norm perceptions. Inherited; drives the violence cascade. (Exact instrument editions pending appendix QC.)"),
+    ("ads-cpt", "Continuous Performance / Go-NoGo inhibition (CPT) [W1-3, inherited]", "W1-3 inhibitory-control task used as the CMI inhibitory-control indicator (the master sheet logs it as GNG). Inherited; predicts W4 outcomes."),
+    ("ads-wof", "Wheel of Fortune (WOF) [W1-2, inherited]", "W1-2 risk/reward task (3 in-scanner runs at W1). Inherited."),
+    ("ads-efr", "Emotion Recognition Task (ERT) [W1-2, inherited]", "W1-2 emotion-recognition task (master sheet: ERT; CMI 'EFR') using NimStim faces. Inherited; bridges to W4 EmoFilm synchrony."),
+    ("ads-temporal-discounting", "Temporal Delay Discounting (TD) [W1-2, inherited]", "W1-2 delay-discounting task. Inherited."),
+    ("ads-gonogo", "Go/NoGo (GNG) [W1, inherited]", "W1 in-scanner inhibition paradigm. Inherited; the GLM/gPPI method applies forward to W4 rest/EmoFilm."),
+    ("ads-emocountstroop", "Emotional Counting Stroop (EmoStroop) [W1, inherited]", "W1 in-scanner affective-interference task (alcohol-related words). A DISTINCT W1-3 task (NOT EmoFilm); confirmed in ADS-MASTER-SHEET 'Data Consolidation Status'. Inherited."),
+    ("ads-cantab-exec", "Executive/memory battery: RAVLT, Trail Making, SWM, SoC [W1-3, inherited]", "W1-3 neuropsych battery from the master sheet: RAVLT (verbal memory), Trail Making (set-shifting), Spatial Working Memory (SWM) + Stockings of Cambridge (SoC) (CANTAB executive). Inherited; candidate CMI predictors."),
+    ("ads-dusi-r", "DUSI substance/violence screening [inherited]", "W1-3 ACASI survey, scored all three waves; the high-risk screener (cutoff>=5) + violence-proneness (DUSI-VP) + substance subscales (child direct; parent indirect at W1). The outcome measure."),
+    ("ads-bisbas", "BIS/BAS scales [inherited]", "W1-3 reinforcement-sensitivity (approach/inhibition); BAS-D mediates CMI->violence. Inherited."),
+    ("ads-context-battery", "Development/cognition/context battery [inherited]", "W1-3 (per ADS-MASTER-SHEET): Scale of Physical Development (puberty), KBIT (IQ), TAD (tobacco/alcohol/drug, W2), AUDIT, parent BRIEF, FamilyHistory (W1), Moderators, Responsibility, Sleep, MAUDIT, Handedness, demographics. Inherited."),
+    ("ads-community-life", "Community-life / environmental assessment [inherited]", "W1-3 'Community Life' battery: exposure to violence (school + neighborhood), neighborhood structure, family structure/climate, social-norm perceptions. Inherited; drives the violence cascade. (Exact instrument editions pending appendix QC.)"),
 ]:
     node(eid, "experiment", nm, {"task-name": eid}, [], body)
 
@@ -342,13 +345,19 @@ node("persona-shady-el-damaty", "persona", "Shady El Damaty",
 node("persona-john-vanmeter", "persona", "John W. VanMeter",
      {"persona-kind": "researcher"}, [("affiliated-with", "org-cfmi-georgetown")], "Dissertation advisor; director, CFMI.")
 node("persona-diana-fishbein", "persona", "Diana H. Fishbein",
-     {"persona-kind": "researcher"}, [], "Co-mentor (Penn State / UNC); translational prevention.")
+     {"persona-kind": "researcher"}, [("affiliated-with", "org-upenn")],
+     "Co-mentor; translational prevention. At the University of Pennsylvania. Inherited from parent ADS.")
+node("persona-emma-rose", "persona", "Emma Rose",
+     {"persona-kind": "researcher"}, [("affiliated-with", "org-upenn")],
+     "Co-mentor (with Fishbein). At the University of Pennsylvania. Inherited from parent ADS.")
 node("org-nij", "organization", "National Institute of Justice",
      {"org-kind": "funder"}, [], "Funder (award 2016-R2-CX-0019). Inherited from parent ADS.")
 node("org-georgetown-university", "organization", "Georgetown University",
      {"org-kind": "institution"}, [], "Degree-granting institution. Inherited from parent ADS.")
 node("org-cfmi-georgetown", "organization", "Center for Functional & Molecular Imaging (CFMI), Georgetown",
      {"org-kind": "lab"}, [("part-of", "org-georgetown-university")], "Imaging center. Inherited from parent ADS.")
+node("org-upenn", "organization", "University of Pennsylvania",
+     {"org-kind": "institution"}, [], "Institution of co-mentors Diana Fishbein and Emma Rose. Inherited from parent ADS.")
 
 # ---------------- DATASETS ----------------
 node("dataset-clad-bids-wave4", "dataset", "CLAD Wave-4 BIDS (de-identified)",

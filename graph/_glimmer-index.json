@@ -5,7 +5,7 @@
   "created": "2026-06-11T00:00:00+00:00",
   "description": "clad-glimmer research-object graph for the Community Life & Adolescent Development study (a subproject of ADS).",
   "upstream-graph": "https://github.com/hebbianloop/ads-glimmer-graph (parent; same cohort)",
-  "node-count": 58,
+  "node-count": 60,
   "nodes": [
     {
       "id": "concept-corticostriatal-convergence",
@@ -83,6 +83,11 @@
       "path": "experiments/ads-bisbas.md"
     },
     {
+      "id": "ads-cantab-exec",
+      "type": "experiment",
+      "path": "experiments/ads-cantab-exec.md"
+    },
+    {
       "id": "ads-community-life",
       "type": "experiment",
       "path": "experiments/ads-community-life.md"
@@ -111,11 +116,6 @@
       "id": "ads-emocountstroop",
       "type": "experiment",
       "path": "experiments/ads-emocountstroop.md"
-    },
-    {
-      "id": "ads-emofilm-paradigm",
-      "type": "experiment",
-      "path": "experiments/ads-emofilm-paradigm.md"
     },
     {
       "id": "ads-gonogo",
@@ -238,9 +238,19 @@
       "path": "organizations/org-nij.md"
     },
     {
+      "id": "org-upenn",
+      "type": "organization",
+      "path": "organizations/org-upenn.md"
+    },
+    {
       "id": "persona-diana-fishbein",
       "type": "persona",
       "path": "personas/persona-diana-fishbein.md"
+    },
+    {
+      "id": "persona-emma-rose",
+      "type": "persona",
+      "path": "personas/persona-emma-rose.md"
     },
     {
       "id": "persona-john-vanmeter",

@@ -4,11 +4,11 @@ type: experiment
 name: "BIS/BAS scales [inherited]"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:9403e97d8c9f5eb8dbc05bf8cb7f247b2feec4d37cbb0884dd4e00d73de4b849
+provenance-hash: sha256:db7d6fab483df86c1ae3376fb873ca42dd8ad2df4ea830c762803ab841dcb529
 task-name: "ads-bisbas"
 edges:
   - {type: in-program, target: program-clad}
   - {type: cross-project, target: "ads-glimmer:experiment-bisbas", role: inherited-from-parent}
 description: |
-  W1-4 reinforcement-sensitivity (approach/inhibition); BAS-D mediates CMI->violence. Inherited.
+  W1-3 reinforcement-sensitivity (approach/inhibition); BAS-D mediates CMI->violence. Inherited.
 ---

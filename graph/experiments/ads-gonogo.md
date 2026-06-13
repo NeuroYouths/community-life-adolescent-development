@@ -1,14 +1,14 @@
 ---
 id: ads-gonogo
 type: experiment
-name: "Go/NoGo [W1-3, inherited]"
+name: "Go/NoGo (GNG) [W1, inherited]"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:cf2f35fe9b299f7e197d66bebbace2a3e690c70c244e1bece82fdb59e1719cb1
+provenance-hash: sha256:7c36b98ffe9e238ef42594b51f779a5e4b4ddb85991b70f3979a6bde47a8f79b
 task-name: "ads-gonogo"
 edges:
   - {type: in-program, target: program-clad}
   - {type: cross-project, target: "ads-glimmer:experiment-gonogo", role: inherited-from-parent}
 description: |
-  W1-3 ADS in-scanner inhibition paradigm (1 run, ~4:25). Inherited; method applies forward to W4 rest/EmoFilm.
+  W1 in-scanner inhibition paradigm. Inherited; the GLM/gPPI method applies forward to W4 rest/EmoFilm.
 ---
