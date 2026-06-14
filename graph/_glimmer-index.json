@@ -5,7 +5,7 @@
   "created": "2026-06-11T00:00:00+00:00",
   "description": "clad-glimmer research-object graph for the Community Life & Adolescent Development study (a subproject of ADS).",
   "upstream-graph": "https://github.com/hebbianloop/ads-glimmer-graph (parent; same cohort)",
-  "node-count": 61,
+  "node-count": 62,
   "nodes": [
     {
       "id": "concept-corticostriatal-convergence",
@@ -296,6 +296,11 @@
       "id": "pub-eldamaty-violence-cascade",
       "type": "publication",
       "path": "publications/pub-eldamaty-violence-cascade.md"
+    },
+    {
+      "id": "standard-ads-protocol",
+      "type": "standard",
+      "path": "standards/standard-ads-protocol.md"
     },
     {
       "id": "standard-bids",

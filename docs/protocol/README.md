@@ -8,10 +8,15 @@ cutoff ≥5 (to ensure alcohol-misuse cases by Wave 3). QC sources: `ADS-protoco
 **TrioTim** sequence card, W1–3), `IRB-Protocol-v4.docx`, `ADS-Field-Manual.docx` (NeuroYouths Box).
 
 ## MRI acquisition
+Per the **ADS-MASTER-SHEET "MRI Inventory"** (the actually-acquired series, N=147), **W1, W2, and W3 each
+acquired the same set**:
 **Waves 1–3 (Siemens MAGNETOM TrioTim 3T):**
-- **Structural** — MPRAGE T1w (1 mm iso); **multi-TI DIR** (`AMRI` dual/single-inversion, TR 2000/3000, ~32 TIs); **multi-echo GRE** (`AMRI_mgre`, TE≈4 ms) → **T2\*/QSM iron** mapping (striatal iron). Localizer.
-- **Diffusion** — DWI/HARDI **80-dir**, b=1100 (`ep2d_diff`), 2.5 mm.
-- **Functional** — resting-state (`ep2d`, TR 2.28 s); **Wheel of Fortune ×3** runs; **Go/No-Go**; **Emotional Counting Stroop** (alcohol-related words). 3×3×3 mm, TR 2.5 s, GRAPPA ×2.
+- **Structural** — **MPRAGE T1w only** (no T2w, no DIR, no iron/QSM in the inventory). Localizer.
+- **Diffusion** — **DTI** (the scanner card lists `ep2d_diff` 80-dir, b=1100, 2.5 mm — confirm against headers).
+- **Functional** — resting-state; **Wheel of Fortune ×3**; **Go/No-Go**; **Emotional Counting Stroop** (alcohol-related words). 3×3×3 mm, TR 2.5 s, GRAPPA ×2.
+- *(The scanner card also shows `AMRI` dual-inversion + multi-echo GRE sequences, but these are **not in the acquired-series inventory** for W1-3 — treat as not-acquired pending confirmation.)*
+
+**Wave-4 (Visit-7, different scanner — adds what W1–3 lacked):** T1w MPRAGE + **T2w SPACE** + **T2w FGATIR/DIR** + DWI/HARDI + fieldmaps + **EmoFilm** BOLD + resting-state. The T1w+T2w pair (W4 only) enables the **T1w/T2w myelin ratio + T2 gray/white-matter boundary**; **DIR is W4-only**.
 
 **Wave-4 (different scanner — "not complete, different data"):** T1w MPRAGE, **T2w SPACE**, **T2w FGATIR/DIR**, DWI/HARDI, fieldmaps, **EmoFilm** BOLD (HCP-pulse replica), resting-state. The T1w/T2w pair gives the **T1w/T2w myelin ratio + T2 gray/white-matter boundary**.
 

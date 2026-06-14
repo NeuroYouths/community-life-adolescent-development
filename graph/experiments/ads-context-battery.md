@@ -1,14 +1,15 @@
 ---
 id: ads-context-battery
 type: experiment
-name: "Development/cognition/context battery [inherited]"
+name: "Development/cognition/context battery [W1-3, inherited]"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:7bed6bef123357e08ef4f4b2a1603ab34e6e569a9a424235355fc941f6734d16
+provenance-hash: sha256:f5880f4f5f12499e9c4b80916796b1b58f739f76ec31ae2ce1e671247217f2ba
 task-name: "ads-context-battery"
 edges:
+  - {type: conforms-to, target: standard-ads-protocol}
   - {type: in-program, target: program-clad}
   - {type: cross-project, target: "ads-glimmer:experiment-context-battery", role: inherited-from-parent}
 description: |
-  W1-3 (per ADS-MASTER-SHEET): Scale of Physical Development (puberty), KBIT (IQ), TAD (tobacco/alcohol/drug, W2), AUDIT, parent BRIEF, FamilyHistory (W1), Moderators, Responsibility, Sleep, MAUDIT, Handedness, demographics. Inherited.
+  Per ADS-MASTER-SHEET: Scale of Physical Development (puberty; Carskadon 1993, W1-3), KBIT (IQ; Kaufman, W1-3), TAD (tobacco/alcohol/drug, W2), AUDIT, parent BRIEF (W1-3), FamilyHistory (W1), Moderators, Responsibility, Sleep, MAUDIT, Handedness, demographics. Inherited.
 ---

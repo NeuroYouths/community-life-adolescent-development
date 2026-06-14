@@ -176,10 +176,11 @@ node("concept-structural-myelin-convergence", "concept",
      {"concept-kind": "research-question", "status": "open", "falsifiable": True},
      [("tested-by-experiment", "clad-anat-mprage"), ("tested-by-experiment", "clad-anat-t2-space"),
       ("tested-by-experiment", "clad-anat-dir"), ("tested-by-experiment", "clad-dwi")],
-     """Flagship STRUCTURE arm: emotion/control networks differ structurally across (a) DWI white-matter
-(HARDI 80-dir), (b) T1w/T2w myelin + the T2 gray/white-matter boundary (incl. the multi-TI DIR contrast),
-and (c) T2*/QSM iron (W1-3 multi-echo GRE; striatal iron). ads56 (W1-3 SST), the Wave-4 SST, and the
-external NICAP/HCP templates are comparison anchors.""")
+     """Flagship STRUCTURE arm. (a) DIFFUSION: DTI/DWI white-matter, acquired W1-3 + W4 (the only structural
+contrast beyond T1w/MPRAGE that W1-3 has). (b) MYELIN: T1w/T2w ratio + T2 gray/white-matter boundary -
+WAVE-4 ONLY (requires T2w SPACE, which W1-3 lacks). (c) DIR (FGATIR) microstructure - WAVE-4 ONLY.
+Per the MRI Inventory, W1-3 structural = MPRAGE + DTI only (no T2w, DIR, or T2*/iron). ads56 (W1-3 SST),
+the Wave-4 SST, and external NICAP/HCP templates are comparison anchors.""")
 node("concept-emofilm-violence", "concept",
      "EmoFilm emotion-network response -> Wave-4 violence outcome",
      {"concept-kind": "research-question", "status": "open", "falsifiable": True},
@@ -201,20 +202,37 @@ node("concept-scanner-harmonization", "concept",
 scanner/sequence differences (own Wave-4 SST + cross-scanner QC) before pooling or transferring W1-3 models.""")
 
 # ---------------- INHERITED W1-3 paradigms (ADS-owned; cross-project injected) ----------------
-for eid, nm, body in [
-    ("ads-cpt", "Continuous Performance / Go-NoGo inhibition (CPT) [W1-3, inherited]", "W1-3 inhibitory-control task used as the CMI inhibitory-control indicator (the master sheet logs it as GNG). Inherited; predicts W4 outcomes."),
-    ("ads-wof", "Wheel of Fortune (WOF) [W1-2, inherited]", "W1-2 risk/reward task (3 in-scanner runs at W1). Inherited."),
-    ("ads-efr", "Emotion Recognition Task (ERT) [W1-2, inherited]", "W1-2 emotion-recognition task (master sheet: ERT; CMI 'EFR') using NimStim faces. Inherited; bridges to W4 EmoFilm synchrony."),
-    ("ads-temporal-discounting", "Temporal Delay Discounting (TD) [W1-2, inherited]", "W1-2 delay-discounting task. Inherited."),
-    ("ads-gonogo", "Go/NoGo (GNG) [W1, inherited]", "W1 in-scanner inhibition paradigm. Inherited; the GLM/gPPI method applies forward to W4 rest/EmoFilm."),
-    ("ads-emocountstroop", "Emotional Counting Stroop (EmoStroop) [W1, inherited]", "W1 in-scanner affective-interference task (alcohol-related words). A DISTINCT W1-3 task (NOT EmoFilm); confirmed in ADS-MASTER-SHEET 'Data Consolidation Status'. Inherited."),
-    ("ads-cantab-exec", "Executive/memory battery: RAVLT, Trail Making, SWM, SoC [W1-3, inherited]", "W1-3 neuropsych battery from the master sheet: RAVLT (verbal memory), Trail Making (set-shifting), Spatial Working Memory (SWM) + Stockings of Cambridge (SoC) (CANTAB executive). Inherited; candidate CMI predictors."),
-    ("ads-dusi-r", "DUSI substance/violence screening [inherited]", "W1-3 ACASI survey, scored all three waves; the high-risk screener (cutoff>=5) + violence-proneness (DUSI-VP) + substance subscales (child direct; parent indirect at W1). The outcome measure."),
-    ("ads-bisbas", "BIS/BAS scales [inherited]", "W1-3 reinforcement-sensitivity (approach/inhibition); BAS-D mediates CMI->violence. Inherited."),
-    ("ads-context-battery", "Development/cognition/context battery [inherited]", "W1-3 (per ADS-MASTER-SHEET): Scale of Physical Development (puberty), KBIT (IQ), TAD (tobacco/alcohol/drug, W2), AUDIT, parent BRIEF, FamilyHistory (W1), Moderators, Responsibility, Sleep, MAUDIT, Handedness, demographics. Inherited."),
-    ("ads-community-life", "Community-life / environmental assessment [inherited]", "W1-3 'Community Life' battery: exposure to violence (school + neighborhood), neighborhood structure, family structure/climate, social-norm perceptions. Inherited; drives the violence cascade. (Exact instrument editions pending appendix QC.)"),
+# Wave attribution from ADS-MASTER-SHEET: imaging tasks (WOF x3, GoNoGo, EmoStroop, Rest, DTI, MPRAGE)
+# acquired ALL of W1-W3 ("MRI Inventory", N=147); behavioral consolidation ("Data Consolidation Status")
+# is W1-2 for ERT/TD/Trails, W1-3 for RAVLT/SWM/SoC/DUSI/BISBAS/PhysicalDev/BRIEF. Each experiment
+# `conforms-to` standard-ads-protocol (the scanner card + IRB protocol + field manual) and cites its instrument.
+_CFA = ("analyzed-by", "cfa-sem")
+_PROTO = ("conforms-to", "standard-ads-protocol")
+for eid, nm, edges, body in [
+    ("ads-cpt", "Continuous Performance scoring of the Go/NoGo letter task (CPT) [W1-3, inherited]", [_PROTO, _CFA],
+     "Signal-detection scoring (d', response-bias beta, RT SD) of the in-scanner Go/NoGo letter task (respond to all letters except the lure) -> the CMI inhibitory-control indicator. Imaging acquired W1-3 (MRI Inventory). Instrument: Conners/Horn-style CPT (Horn 2003). Inherited."),
+    ("ads-wof", "Wheel of Fortune (WOF) [W1-3, inherited]", [_PROTO, _CFA],
+     "In-scanner risk/reward decision task, 3 runs/wave, acquired W1-3 (MRI Inventory: WOF1/2/3). Instrument: Ernst 2004 Wheel of Fortune. Inherited."),
+    ("ads-efr", "Emotion Recognition Task (ERT) [W1-2 consolidated, inherited]", [_PROTO, _CFA],
+     "Off-scanner emotion-recognition task (master sheet: ERT; CMI 'EFR') using NimStim faces (Tottenham 2009). Consolidated W1-2 ('Data Consolidation Status'; W3 not consolidated - possible gap). Bridges to W4 EmoFilm synchrony. Inherited."),
+    ("ads-temporal-discounting", "Temporal Delay Discounting (TD) [W1-2 consolidated, inherited]", [_PROTO, _CFA],
+     "Off-scanner delay-discounting task (AUC of indifference values). Consolidated W1-2. Inherited."),
+    ("ads-gonogo", "Go/NoGo (GNG) [W1-3, inherited]", [_PROTO],
+     "In-scanner letter Go/NoGo inhibition task, acquired W1-3 (MRI Inventory). Frontostriatal (caudate<->DLPFC/IFG) GLM/gPPI; method applies forward to W4 rest/EmoFilm where W4 behavior is absent. Inherited."),
+    ("ads-emocountstroop", "Emotional Counting Stroop (EmoStroop) [W1-3, inherited]", [_PROTO],
+     "In-scanner affective-interference task (alcohol-related words), acquired W1-3 (MRI Inventory). A DISTINCT W1-3 task (NOT EmoFilm; EmoFilm is W4). Inherited."),
+    ("ads-cantab-exec", "Executive/memory battery: RAVLT, Trail Making, SWM, SoC [W1-3, inherited]", [_PROTO, _CFA],
+     "Off-scanner neuropsych battery (master sheet): RAVLT (verbal memory, W1-3), Trail Making (set-shifting, W1-2), Spatial Working Memory + Stockings of Cambridge (CANTAB executive, W1-3). Candidate CMI predictors. Inherited."),
+    ("ads-dusi-r", "DUSI substance/violence screening [W1-3, inherited]", [_PROTO],
+     "ACASI survey, scored all three waves; the high-risk screener (cutoff>=5) + violence-proneness (DUSI-VP) + substance subscales (child direct; parent indirect at W1). The outcome measure. Instrument: Tarter Drug Use Screening Inventory (DUSI-R). Inherited."),
+    ("ads-bisbas", "BIS/BAS scales [W1-3, inherited]", [_PROTO],
+     "Reinforcement-sensitivity self-report (approach/inhibition), W1-3; BAS-D mediates CMI->violence. Instrument: Carver & White 1994 BIS/BAS. Inherited."),
+    ("ads-context-battery", "Development/cognition/context battery [W1-3, inherited]", [_PROTO],
+     "Per ADS-MASTER-SHEET: Scale of Physical Development (puberty; Carskadon 1993, W1-3), KBIT (IQ; Kaufman, W1-3), TAD (tobacco/alcohol/drug, W2), AUDIT, parent BRIEF (W1-3), FamilyHistory (W1), Moderators, Responsibility, Sleep, MAUDIT, Handedness, demographics. Inherited."),
+    ("ads-community-life", "Community-life / environmental assessment [W1-3, inherited]", [_PROTO],
+     "'Community Life' battery: exposure to violence (school + neighborhood), neighborhood structure, family structure/climate, social-norm perceptions. Drives the violence cascade. (Exact instrument editions pending the protocol appendices.) Inherited."),
 ]:
-    node(eid, "experiment", nm, {"task-name": eid}, [], body)
+    node(eid, "experiment", nm, {"task-name": eid}, list(edges), body)
 
 # ---------------- CLAD-owned W4 acquisitions (realized in the Wave-4 BIDS) ----------------
 node("clad-emofilm", "experiment", "EmoFilm BOLD (Wave-4 acquisition)",
@@ -295,6 +313,13 @@ node("standard-bids", "standard", "Brain Imaging Data Structure (BIDS)",
 node("standard-hcp", "standard", "Human Connectome Project (HCP / HCP-D)",
      {"standard-class": "protocol"}, [],
      "External comparison: HCP/HCP-D myelin-mapping + pulse-sequence lineage (EmoFilm is an HCP-pulse replica). NDA-gated; metadata only.")
+node("standard-ads-protocol", "standard", "ADS / CLAD study protocol (scan card + IRB protocol + field manual)",
+     {"standard-class": "protocol"}, [],
+     "The canonical study protocol, the ground truth experiments conform to. Sources (NeuroYouths Box + "
+     "ADS-MASTER): ADS-protocol.pdf (Siemens TrioTim W1-3 scanner card), IRB-Protocol-v4.docx, "
+     "ADS-Field-Manual.docx (per-instrument administration), and the ADS-MASTER-SHEET task x wave matrix. "
+     "Per the MRI Inventory, W1-3 imaging = MPRAGE (T1w) + DTI + Rest + EmoStroop + GoNoGo + WOFx3 (all "
+     "three waves); W4 adds EmoFilm + T2w SPACE + T2w FGATIR/DIR (different scanner). No T2w/DIR/iron in W1-3.")
 
 # ---------------- PUBLICATIONS ----------------
 node("pub-eldamaty-2022-cmi", "publication",

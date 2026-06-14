@@ -1,14 +1,16 @@
 ---
 id: ads-cpt
 type: experiment
-name: "Continuous Performance / Go-NoGo inhibition (CPT) [W1-3, inherited]"
+name: "Continuous Performance scoring of the Go/NoGo letter task (CPT) [W1-3, inherited]"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
-provenance-hash: sha256:5e0c5b2befb068f8c30bd71814a7668388da6d537463aa9e60e4eeb9f1c44a9a
+provenance-hash: sha256:13ecda4eba50e5d8734dad78fa32a48dd2164e999f97ceb595b937fdb6ccafa7
 task-name: "ads-cpt"
 edges:
+  - {type: conforms-to, target: standard-ads-protocol}
+  - {type: analyzed-by, target: cfa-sem}
   - {type: in-program, target: program-clad}
   - {type: cross-project, target: "ads-glimmer:experiment-cpt", role: inherited-from-parent}
 description: |
-  W1-3 inhibitory-control task used as the CMI inhibitory-control indicator (the master sheet logs it as GNG). Inherited; predicts W4 outcomes.
+  Signal-detection scoring (d', response-bias beta, RT SD) of the in-scanner Go/NoGo letter task (respond to all letters except the lure) -> the CMI inhibitory-control indicator. Imaging acquired W1-3 (MRI Inventory). Instrument: Conners/Horn-style CPT (Horn 2003). Inherited.
 ---

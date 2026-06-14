@@ -14,7 +14,8 @@ CONTROLLED and live in the private backend). Canonical source: `ads-master-dicti
 | Development | age, PDS (puberty), BMI, sex | anthropometrics; Pubertal Development Scale |
 | Cognitive | composite IQ | KBIT |
 | Context | SES (income + education z-composite) | caregiver interview |
-| Imaging (acquired) | T1w MPRAGE, T2w, BOLD (rest/EmoFilm/GoNoGo), DWI/HARDI, fmap | Siemens 3T |
+| Imaging W1–3 (MRI Inventory) | T1w MPRAGE, DTI, BOLD: rest / EmoStroop / Go-NoGo / WOF×3 | Siemens TrioTim 3T |
+| Imaging W4 (Visit-7) | + T2w SPACE, T2w FGATIR/DIR, EmoFilm BOLD, fmap | different scanner |
 
 ## Structural & template derivatives (the structure arm)
 | Derivative | What | Method → output |
