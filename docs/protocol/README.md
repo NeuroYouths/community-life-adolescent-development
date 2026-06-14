@@ -3,7 +3,7 @@
 Study (IRB v4 title): *"fMRI Study of Adverse Stressors Precluding Development of Cognitive-Emotional
 Competence in Adolescence"* (NIJ 2016-R2-CX-0019). Multi-site: **Georgetown CFMI** (scanning) +
 **University of Maryland School of Medicine** (recruitment/call center); co-mentors Diana Fishbein and
-Emma Rose at the **University of Pennsylvania**. High-risk oversample via DUSI
+Emma Rose at **Penn State** (P-TRAN) and **UNC**. High-risk oversample via DUSI
 cutoff ≥5 (to ensure alcohol-misuse cases by Wave 3). QC sources: `ADS-protocol.pdf` (Siemens MAGNETOM
 **TrioTim** sequence card, W1–3), `IRB-Protocol-v4.docx`, `ADS-Field-Manual.docx` (NeuroYouths Box).
 

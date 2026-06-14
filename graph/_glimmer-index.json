@@ -5,7 +5,7 @@
   "created": "2026-06-11T00:00:00+00:00",
   "description": "clad-glimmer research-object graph for the Community Life & Adolescent Development study (a subproject of ADS).",
   "upstream-graph": "https://github.com/hebbianloop/ads-glimmer-graph (parent; same cohort)",
-  "node-count": 60,
+  "node-count": 61,
   "nodes": [
     {
       "id": "concept-corticostriatal-convergence",
@@ -238,9 +238,14 @@
       "path": "organizations/org-nij.md"
     },
     {
-      "id": "org-upenn",
+      "id": "org-penn-state",
       "type": "organization",
-      "path": "organizations/org-upenn.md"
+      "path": "organizations/org-penn-state.md"
+    },
+    {
+      "id": "org-unc",
+      "type": "organization",
+      "path": "organizations/org-unc.md"
     },
     {
       "id": "persona-diana-fishbein",

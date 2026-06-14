@@ -46,7 +46,8 @@ CROSS = {
     "ads-cantab-exec":           [("ads-glimmer:experiment-cantab-exec", "inherited-from-parent")],
     "persona-diana-fishbein":    [("ads-glimmer:persona-diana-fishbein", "inherited-from-parent")],
     "persona-emma-rose":         [("ads-glimmer:persona-emma-rose", "inherited-from-parent")],
-    "org-upenn":                 [("ads-glimmer:org-upenn", "inherited-from-parent")],
+    "org-penn-state":            [("ads-glimmer:org-penn-state", "inherited-from-parent")],
+    "org-unc":                   [("ads-glimmer:org-unc", "inherited-from-parent")],
     # inherited battery + environmental/community-life assessment
     "ads-dusi-r":                [("ads-glimmer:experiment-dusi-r", "inherited-from-parent")],
     "ads-bisbas":                [("ads-glimmer:experiment-bisbas", "inherited-from-parent")],
@@ -345,19 +346,21 @@ node("persona-shady-el-damaty", "persona", "Shady El Damaty",
 node("persona-john-vanmeter", "persona", "John W. VanMeter",
      {"persona-kind": "researcher"}, [("affiliated-with", "org-cfmi-georgetown")], "Dissertation advisor; director, CFMI.")
 node("persona-diana-fishbein", "persona", "Diana H. Fishbein",
-     {"persona-kind": "researcher"}, [("affiliated-with", "org-upenn")],
-     "Co-mentor; translational prevention. At the University of Pennsylvania. Inherited from parent ADS.")
+     {"persona-kind": "researcher"}, [("affiliated-with", "org-penn-state"), ("affiliated-with", "org-unc")],
+     "Co-mentor; translational prevention research (P-TRAN). Penn State + UNC. Inherited from parent ADS.")
 node("persona-emma-rose", "persona", "Emma Rose",
-     {"persona-kind": "researcher"}, [("affiliated-with", "org-upenn")],
-     "Co-mentor (with Fishbein). At the University of Pennsylvania. Inherited from parent ADS.")
+     {"persona-kind": "researcher"}, [("affiliated-with", "org-penn-state")],
+     "Co-mentor (with Fishbein), Penn State. Inherited from parent ADS.")
 node("org-nij", "organization", "National Institute of Justice",
      {"org-kind": "funder"}, [], "Funder (award 2016-R2-CX-0019). Inherited from parent ADS.")
 node("org-georgetown-university", "organization", "Georgetown University",
      {"org-kind": "institution"}, [], "Degree-granting institution. Inherited from parent ADS.")
 node("org-cfmi-georgetown", "organization", "Center for Functional & Molecular Imaging (CFMI), Georgetown",
      {"org-kind": "lab"}, [("part-of", "org-georgetown-university")], "Imaging center. Inherited from parent ADS.")
-node("org-upenn", "organization", "University of Pennsylvania",
-     {"org-kind": "institution"}, [], "Institution of co-mentors Diana Fishbein and Emma Rose. Inherited from parent ADS.")
+node("org-penn-state", "organization", "Pennsylvania State University",
+     {"org-kind": "institution"}, [], "Co-mentor institution (Fishbein P-TRAN / Bennett-Pierce; Emma Rose). Inherited from parent ADS.")
+node("org-unc", "organization", "University of North Carolina at Chapel Hill",
+     {"org-kind": "institution"}, [], "Co-mentor institution (Fishbein; Frank Porter Graham Child Development Institute). Inherited from parent ADS.")
 
 # ---------------- DATASETS ----------------
 node("dataset-clad-bids-wave4", "dataset", "CLAD Wave-4 BIDS (de-identified)",
