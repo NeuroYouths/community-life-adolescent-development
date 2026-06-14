@@ -5,7 +5,7 @@
   "created": "2026-06-11T00:00:00+00:00",
   "description": "clad-glimmer research-object graph for the Community Life & Adolescent Development study (a subproject of ADS).",
   "upstream-graph": "https://github.com/hebbianloop/ads-glimmer-graph (parent; same cohort)",
-  "node-count": 62,
+  "node-count": 63,
   "nodes": [
     {
       "id": "concept-corticostriatal-convergence",
@@ -256,6 +256,11 @@
       "id": "persona-emma-rose",
       "type": "persona",
       "path": "personas/persona-emma-rose.md"
+    },
+    {
+      "id": "persona-erika-raven",
+      "type": "persona",
+      "path": "personas/persona-erika-raven.md"
     },
     {
       "id": "persona-john-vanmeter",

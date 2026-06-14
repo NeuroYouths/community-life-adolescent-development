@@ -81,6 +81,15 @@ Waves 1–3 BIDS 142 subjects.
 - **Defacing** of de-identified anatomicals required before any imaging byte is annexed/published.
 - Tian subcortical atlas NIfTI location to confirm.
 
+## ADS-MASTER ground truth (Box: Projects/ADS) — keep this current
+Authoritative sources confirmed in the NeuroYouths Box `ADS-MASTER` + `datafiles` + `bashscripts` folders:
+- **`ADS-MR-INVENTORY.xlsx`** (WAVE 1/2/3 × series): W1–3 acquired = **MPRAGE, DWI/DTI, Rest, EmoStroop, Go/NoGo, WOF×3** (no T2w/DIR). **`mr-data-manifest_withkey.txt`** = per-task run/volume counts (EmoStroop 110, Go/NoGo 121, …).
+- **`datafiles/`** (the data to mirror into ads-glimmer): `mri-data` (8,170), `Neuropsych` (2,624), `rois` (840), `Stimulus-Computer` (3,530), `Genetics`, `Behavioral&Demographic`, `pls-r`, `tables`; + `ads.dd.matched.xlsx` (matched data dictionary), `Ever_User_*.xlsx` (substance-use vector), `w{1,2}-{ES,GNG,WOF}-*.txt` task exports.
+- **`bashscripts/`** = the **actual W1–3 pipeline** (ground truth over the modernization plan): `recon-all`, **FSFAST** (`FSFAST-setup/preproc/2ndlvl` — FreeSurfer functional, *not* fMRIPrep), `fsqc`, `get-fs-stats`, `importSubs`, `extractomatic`, `cfmi-sync` (+ `bin/`, `dev/`, `lists/`).
+- **Iron (T2\*/QSM, multi-echo GRE)**: **acquired in W1–3 but NOT pulled** — a separate brain-iron sub-study (Erika Raven). Recoverable if the iron axis is pursued; currently out of scope.
+
+**ads-glimmer (github/main) status:** the imaging data is already represented (16 dataset nodes incl. all func tasks + structural + DIR/MP2RAGE + SST-n56; 38 method nodes). **Gaps to import:** the non-imaging data classes above (Genetics/Neuropsych/rois/pls-r/Stimulus/tables/dictionaries), the iron-not-pulled note, v0.4 program/subproject, and the people (Fishbein/Rose/Raven + Penn State/UNC). Tracked for the ADS v0.4 + data-completion PR.
+
 ## Recovery order (later passes)
 1. Freeze canonical inputs: legacy-bids-w4 + legacy-bids-w13 + NICAP55 template + behavioral covariates.
 2. Wire encrypted annex (Hetzner) + private controlled backend (revive `clad-master`); migrate bytes (defaced).

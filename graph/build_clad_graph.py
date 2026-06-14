@@ -46,6 +46,7 @@ CROSS = {
     "ads-cantab-exec":           [("ads-glimmer:experiment-cantab-exec", "inherited-from-parent")],
     "persona-diana-fishbein":    [("ads-glimmer:persona-diana-fishbein", "inherited-from-parent")],
     "persona-emma-rose":         [("ads-glimmer:persona-emma-rose", "inherited-from-parent")],
+    "persona-erika-raven":       [("ads-glimmer:persona-erika-raven", "inherited-from-parent")],
     "org-penn-state":            [("ads-glimmer:org-penn-state", "inherited-from-parent")],
     "org-unc":                   [("ads-glimmer:org-unc", "inherited-from-parent")],
     # inherited battery + environmental/community-life assessment
@@ -179,8 +180,9 @@ node("concept-structural-myelin-convergence", "concept",
      """Flagship STRUCTURE arm. (a) DIFFUSION: DTI/DWI white-matter, acquired W1-3 + W4 (the only structural
 contrast beyond T1w/MPRAGE that W1-3 has). (b) MYELIN: T1w/T2w ratio + T2 gray/white-matter boundary -
 WAVE-4 ONLY (requires T2w SPACE, which W1-3 lacks). (c) DIR (FGATIR) microstructure - WAVE-4 ONLY.
-Per the MRI Inventory, W1-3 structural = MPRAGE + DTI only (no T2w, DIR, or T2*/iron). ads56 (W1-3 SST),
-the Wave-4 SST, and external NICAP/HCP templates are comparison anchors.""")
+Per the MRI Inventory, W1-3 structural = MPRAGE + DTI only (no T2w or DIR). A T2*/QSM iron (multi-echo GRE)
+sequence WAS acquired in W1-3 but never pulled (Erika Raven brain-iron sub-study) - recoverable if the
+iron axis is pursued. ads56 (W1-3 SST), the Wave-4 SST, and external NICAP/HCP templates are comparison anchors.""")
 node("concept-emofilm-violence", "concept",
      "EmoFilm emotion-network response -> Wave-4 violence outcome",
      {"concept-kind": "research-question", "status": "open", "falsifiable": True},
@@ -319,7 +321,15 @@ node("standard-ads-protocol", "standard", "ADS / CLAD study protocol (scan card 
      "ADS-MASTER): ADS-protocol.pdf (Siemens TrioTim W1-3 scanner card), IRB-Protocol-v4.docx, "
      "ADS-Field-Manual.docx (per-instrument administration), and the ADS-MASTER-SHEET task x wave matrix. "
      "Per the MRI Inventory, W1-3 imaging = MPRAGE (T1w) + DTI + Rest + EmoStroop + GoNoGo + WOFx3 (all "
-     "three waves); W4 adds EmoFilm + T2w SPACE + T2w FGATIR/DIR (different scanner). No T2w/DIR/iron in W1-3.")
+     "three waves); W4 adds EmoFilm + T2w SPACE + T2w FGATIR/DIR (different scanner). No T2w/DIR in W1-3. "
+     "IRON: a multi-echo GRE (T2*/QSM) sequence WAS acquired in W1-3 but NEVER PULLED into this dataset - "
+     "it belonged to a separate brain-iron sub-study (Erika Raven) and was ignored; recoverable if needed. "
+     "Actual W1-3 analysis pipeline (per the bashscripts repo) was FreeSurfer recon-all + FSFAST + FSQC, "
+     "not fMRIPrep (the latter is the modernization target).")
+node("persona-erika-raven", "persona", "Erika Raven",
+     {"persona-kind": "researcher"}, [],
+     "ADS collaborator; ran a separate brain-iron (T2*/QSM, multi-echo GRE) sub-study on W1-3 data that was "
+     "acquired but not pulled into this dataset. Inherited from parent ADS.")
 
 # ---------------- PUBLICATIONS ----------------
 node("pub-eldamaty-2022-cmi", "publication",
