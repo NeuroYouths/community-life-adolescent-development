@@ -13,7 +13,18 @@ pmid: "36571021"
 edges:
   - {type: authored-by, target: persona-shady-el-damaty}
   - {type: authored-by, target: persona-diana-fishbein}
-  - {type: authored-by, target: persona-john-vanmeter}
+  - {type: authored-by, target: persona-valerie-darcey}
+  - {type: authored-by, target: persona-goldie-mcquaid}
+  - {type: authored-by, target: persona-giorgia-picci}
+  - {type: authored-by, target: persona-maria-stoianova}
+  - {type: authored-by, target: persona-veronica-mucciarone}
+  - {type: authored-by, target: persona-yewon-chun}
+  - {type: authored-by, target: persona-marissa-laws}
+  - {type: authored-by, target: persona-victor-campano}
+  - {type: authored-by, target: persona-kinney-van-hecke}
+  - {type: authored-by, target: persona-mary-ryan}
+  - {type: authored-by, target: persona-emma-rose}
+  - {type: authored-by, target: persona-ashley-vanmeter}
   - {type: addresses-concept, target: concept-neurocognitive-maturity}
   - {type: cites-method, target: cfa-sem}
   - {type: cites-method, target: lasso-age-prediction}

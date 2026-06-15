@@ -8,7 +8,7 @@ provenance-hash: sha256:8840933e0c22cde35e62125bc936b86617e5c1ecceb544ffe18c5ed1
 pub-status: "draft"
 edges:
   - {type: authored-by, target: persona-shady-el-damaty}
-  - {type: authored-by, target: persona-john-vanmeter}
+  - {type: authored-by, target: persona-ashley-vanmeter}
   - {type: addresses-concept, target: concept-striatal-development}
   - {type: cites-method, target: clad-masked-ica-w4}
   - {type: cites-method, target: split-half-reproducibility}
