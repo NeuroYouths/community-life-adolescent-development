@@ -13,5 +13,5 @@ edges:
   - {type: conforms-to, target: standard-bids}
   - {type: in-program, target: program-clad}
 description: |
-  Wave-4 / Visit-7 BIDS: T1w MPRAGE, T2w SPACE, T2w DIR, DWI, fmap, EmoFilm BOLD, rest BOLD (61 subj local). Defaced + annexed in the data pass.
+  Wave-4 / Visit-7 BIDS: T1w MPRAGE, T2w SPACE, T2w DIR, DWI, fmap, EmoFilm BOLD, rest BOLD (61 subj local). Defaced + annexed in the data pass. Fieldmaps (W4 Prisma, PE-reversed for distortion correction): BOLD AP + PA SE-EPI (2.2x2.2x2.0, TR 4530 / TE 39, TA 0:18 each) + DWI PA SE-EPI (1.8 iso, TR 4200 / TE 76, PE R>>L, TA 0:40) — per the W4 protocol; no dedicated experiment node.
 ---
