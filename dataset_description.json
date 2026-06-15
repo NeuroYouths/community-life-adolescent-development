@@ -1,0 +1,21 @@
+{
+  "Name": "Community Life & Adolescent Development (CLAD)",
+  "BIDSVersion": "1.9.0",
+  "DatasetType": "raw",
+  "License": "CC-BY-4.0",
+  "Authors": ["Shady El Damaty", "John W. VanMeter", "Diana H. Fishbein"],
+  "Acknowledgements": "Center for Functional & Molecular Imaging, Georgetown University Medical Center; the ADS/CLAD participants and families.",
+  "Funding": [
+    "NIJ 2016-R2-CX-0019 (OJP 2016-90111-DC-IJ)",
+    "NIH/NIAAA 1R01AA019983-01",
+    "NIH/NIAAA 3R01AA019983-02S1",
+    "NIH/NCATS 1KL2RR031974-01",
+    "NIH/NICHD 2P30HD040677-11"
+  ],
+  "HowToAcknowledge": "Cite the dissertation and the CLAD dataset (see CITATION.cff).",
+  "ReferencesAndLinks": [
+    "https://doi.org/10.3389/fpsyg.2022.1017317",
+    "https://osf.io/cdyxh/"
+  ],
+  "EthicsApprovals": ["Georgetown University IRB 2016-0902"]
+}

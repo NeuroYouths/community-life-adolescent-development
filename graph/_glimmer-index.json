@@ -1,0 +1,396 @@
+{
+  "schema": "glimmer/v0.4.0",
+  "dataset-name": "clad-glimmer",
+  "default-domain": "neuroimaging",
+  "created": "2026-06-11T00:00:00+00:00",
+  "description": "clad-glimmer research-object graph for the Community Life & Adolescent Development study (a subproject of ADS).",
+  "upstream-graph": "https://github.com/hebbianloop/ads-glimmer-graph (parent; same cohort)",
+  "node-count": 77,
+  "nodes": [
+    {
+      "id": "ads-bisbas",
+      "type": "experiment",
+      "path": "experiments/ads-bisbas.md"
+    },
+    {
+      "id": "ads-cantab-exec",
+      "type": "experiment",
+      "path": "experiments/ads-cantab-exec.md"
+    },
+    {
+      "id": "ads-community-life",
+      "type": "experiment",
+      "path": "experiments/ads-community-life.md"
+    },
+    {
+      "id": "ads-context-battery",
+      "type": "experiment",
+      "path": "experiments/ads-context-battery.md"
+    },
+    {
+      "id": "ads-cpt",
+      "type": "experiment",
+      "path": "experiments/ads-cpt.md"
+    },
+    {
+      "id": "ads-dusi-r",
+      "type": "experiment",
+      "path": "experiments/ads-dusi-r.md"
+    },
+    {
+      "id": "ads-efr",
+      "type": "experiment",
+      "path": "experiments/ads-efr.md"
+    },
+    {
+      "id": "ads-emocountstroop",
+      "type": "experiment",
+      "path": "experiments/ads-emocountstroop.md"
+    },
+    {
+      "id": "ads-gonogo",
+      "type": "experiment",
+      "path": "experiments/ads-gonogo.md"
+    },
+    {
+      "id": "ads-temporal-discounting",
+      "type": "experiment",
+      "path": "experiments/ads-temporal-discounting.md"
+    },
+    {
+      "id": "ads-wof",
+      "type": "experiment",
+      "path": "experiments/ads-wof.md"
+    },
+    {
+      "id": "cfa-sem",
+      "type": "method",
+      "path": "methods/cfa-sem.md"
+    },
+    {
+      "id": "clad-anat-dir",
+      "type": "experiment",
+      "path": "experiments/clad-anat-dir.md"
+    },
+    {
+      "id": "clad-anat-mprage",
+      "type": "experiment",
+      "path": "experiments/clad-anat-mprage.md"
+    },
+    {
+      "id": "clad-anat-t2-space",
+      "type": "experiment",
+      "path": "experiments/clad-anat-t2-space.md"
+    },
+    {
+      "id": "clad-denoising-w4",
+      "type": "method",
+      "path": "methods/clad-denoising-w4.md"
+    },
+    {
+      "id": "clad-dwi",
+      "type": "experiment",
+      "path": "experiments/clad-dwi.md"
+    },
+    {
+      "id": "clad-dwi-w4",
+      "type": "method",
+      "path": "methods/clad-dwi-w4.md"
+    },
+    {
+      "id": "clad-emofilm",
+      "type": "experiment",
+      "path": "experiments/clad-emofilm.md"
+    },
+    {
+      "id": "clad-emofilm-bold-amplitude",
+      "type": "method",
+      "path": "methods/clad-emofilm-bold-amplitude.md"
+    },
+    {
+      "id": "clad-emofilm-isc",
+      "type": "method",
+      "path": "methods/clad-emofilm-isc.md"
+    },
+    {
+      "id": "clad-fmriprep-w4",
+      "type": "method",
+      "path": "methods/clad-fmriprep-w4.md"
+    },
+    {
+      "id": "clad-masked-ica-w4",
+      "type": "method",
+      "path": "methods/clad-masked-ica-w4.md"
+    },
+    {
+      "id": "clad-myelin-t1t2",
+      "type": "method",
+      "path": "methods/clad-myelin-t1t2.md"
+    },
+    {
+      "id": "clad-rest",
+      "type": "experiment",
+      "path": "experiments/clad-rest.md"
+    },
+    {
+      "id": "clad-wave4-sst",
+      "type": "method",
+      "path": "methods/clad-wave4-sst.md"
+    },
+    {
+      "id": "concept-corticostriatal-convergence",
+      "type": "concept",
+      "path": "concepts/concept-corticostriatal-convergence.md"
+    },
+    {
+      "id": "concept-efr-individual-differences",
+      "type": "concept",
+      "path": "concepts/concept-efr-individual-differences.md"
+    },
+    {
+      "id": "concept-emofilm-synchrony",
+      "type": "concept",
+      "path": "concepts/concept-emofilm-synchrony.md"
+    },
+    {
+      "id": "concept-emofilm-violence",
+      "type": "concept",
+      "path": "concepts/concept-emofilm-violence.md"
+    },
+    {
+      "id": "concept-gonogo-inhibition",
+      "type": "concept",
+      "path": "concepts/concept-gonogo-inhibition.md"
+    },
+    {
+      "id": "concept-impulse-control-frontostriatal",
+      "type": "concept",
+      "path": "concepts/concept-impulse-control-frontostriatal.md"
+    },
+    {
+      "id": "concept-neurocognitive-maturity",
+      "type": "concept",
+      "path": "concepts/concept-neurocognitive-maturity.md"
+    },
+    {
+      "id": "concept-scanner-harmonization",
+      "type": "concept",
+      "path": "concepts/concept-scanner-harmonization.md"
+    },
+    {
+      "id": "concept-striatal-development",
+      "type": "concept",
+      "path": "concepts/concept-striatal-development.md"
+    },
+    {
+      "id": "concept-structural-myelin-convergence",
+      "type": "concept",
+      "path": "concepts/concept-structural-myelin-convergence.md"
+    },
+    {
+      "id": "concept-violence-cascade",
+      "type": "concept",
+      "path": "concepts/concept-violence-cascade.md"
+    },
+    {
+      "id": "concept-w13-analytic-validation",
+      "type": "concept",
+      "path": "concepts/concept-w13-analytic-validation.md"
+    },
+    {
+      "id": "dataset-clad-bids-w13",
+      "type": "dataset",
+      "path": "datasets/dataset-clad-bids-w13.md"
+    },
+    {
+      "id": "dataset-clad-bids-wave4",
+      "type": "dataset",
+      "path": "datasets/dataset-clad-bids-wave4.md"
+    },
+    {
+      "id": "lasso-age-prediction",
+      "type": "method",
+      "path": "methods/lasso-age-prediction.md"
+    },
+    {
+      "id": "multimodal-striatal-parcellation",
+      "type": "method",
+      "path": "methods/multimodal-striatal-parcellation.md"
+    },
+    {
+      "id": "org-boys-town",
+      "type": "organization",
+      "path": "organizations/org-boys-town.md"
+    },
+    {
+      "id": "org-cfmi-georgetown",
+      "type": "organization",
+      "path": "organizations/org-cfmi-georgetown.md"
+    },
+    {
+      "id": "org-georgetown-university",
+      "type": "organization",
+      "path": "organizations/org-georgetown-university.md"
+    },
+    {
+      "id": "org-nij",
+      "type": "organization",
+      "path": "organizations/org-nij.md"
+    },
+    {
+      "id": "org-penn-state",
+      "type": "organization",
+      "path": "organizations/org-penn-state.md"
+    },
+    {
+      "id": "org-unc",
+      "type": "organization",
+      "path": "organizations/org-unc.md"
+    },
+    {
+      "id": "persona-ashley-vanmeter",
+      "type": "persona",
+      "path": "personas/persona-ashley-vanmeter.md"
+    },
+    {
+      "id": "persona-chandan-vaidya",
+      "type": "persona",
+      "path": "personas/persona-chandan-vaidya.md"
+    },
+    {
+      "id": "persona-diana-fishbein",
+      "type": "persona",
+      "path": "personas/persona-diana-fishbein.md"
+    },
+    {
+      "id": "persona-emma-rose",
+      "type": "persona",
+      "path": "personas/persona-emma-rose.md"
+    },
+    {
+      "id": "persona-erika-raven",
+      "type": "persona",
+      "path": "personas/persona-erika-raven.md"
+    },
+    {
+      "id": "persona-giorgia-picci",
+      "type": "persona",
+      "path": "personas/persona-giorgia-picci.md"
+    },
+    {
+      "id": "persona-goldie-mcquaid",
+      "type": "persona",
+      "path": "personas/persona-goldie-mcquaid.md"
+    },
+    {
+      "id": "persona-jennifer-woolard",
+      "type": "persona",
+      "path": "personas/persona-jennifer-woolard.md"
+    },
+    {
+      "id": "persona-kinney-van-hecke",
+      "type": "persona",
+      "path": "personas/persona-kinney-van-hecke.md"
+    },
+    {
+      "id": "persona-maria-stoianova",
+      "type": "persona",
+      "path": "personas/persona-maria-stoianova.md"
+    },
+    {
+      "id": "persona-marissa-laws",
+      "type": "persona",
+      "path": "personas/persona-marissa-laws.md"
+    },
+    {
+      "id": "persona-mary-ann-dutton",
+      "type": "persona",
+      "path": "personas/persona-mary-ann-dutton.md"
+    },
+    {
+      "id": "persona-mary-ryan",
+      "type": "persona",
+      "path": "personas/persona-mary-ryan.md"
+    },
+    {
+      "id": "persona-shady-el-damaty",
+      "type": "persona",
+      "path": "personas/persona-shady-el-damaty.md"
+    },
+    {
+      "id": "persona-valerie-darcey",
+      "type": "persona",
+      "path": "personas/persona-valerie-darcey.md"
+    },
+    {
+      "id": "persona-veronica-mucciarone",
+      "type": "persona",
+      "path": "personas/persona-veronica-mucciarone.md"
+    },
+    {
+      "id": "persona-victor-campano",
+      "type": "persona",
+      "path": "personas/persona-victor-campano.md"
+    },
+    {
+      "id": "persona-yewon-chun",
+      "type": "persona",
+      "path": "personas/persona-yewon-chun.md"
+    },
+    {
+      "id": "program-clad",
+      "type": "program",
+      "path": "programs/program-clad.md"
+    },
+    {
+      "id": "pub-corticostriatal-convergence",
+      "type": "publication",
+      "path": "publications/pub-corticostriatal-convergence.md"
+    },
+    {
+      "id": "pub-eldamaty-2017-dissertation",
+      "type": "publication",
+      "path": "publications/pub-eldamaty-2017-dissertation.md"
+    },
+    {
+      "id": "pub-eldamaty-2022-cmi",
+      "type": "publication",
+      "path": "publications/pub-eldamaty-2022-cmi.md"
+    },
+    {
+      "id": "pub-eldamaty-striatal-parcellation",
+      "type": "publication",
+      "path": "publications/pub-eldamaty-striatal-parcellation.md"
+    },
+    {
+      "id": "pub-eldamaty-violence-cascade",
+      "type": "publication",
+      "path": "publications/pub-eldamaty-violence-cascade.md"
+    },
+    {
+      "id": "split-half-reproducibility",
+      "type": "method",
+      "path": "methods/split-half-reproducibility.md"
+    },
+    {
+      "id": "standard-ads-protocol",
+      "type": "standard",
+      "path": "standards/standard-ads-protocol.md"
+    },
+    {
+      "id": "standard-bids",
+      "type": "standard",
+      "path": "standards/standard-bids.md"
+    },
+    {
+      "id": "standard-clad-wave4-sst",
+      "type": "standard",
+      "path": "standards/standard-clad-wave4-sst.md"
+    },
+    {
+      "id": "standard-hcp",
+      "type": "standard",
+      "path": "standards/standard-hcp.md"
+    }
+  ]
+}

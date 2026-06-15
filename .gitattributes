@@ -1,0 +1,18 @@
+# Forward-looking git-annex routing for the data-migration pass.
+# Until DataLad/annex + the encrypted special remote are wired (see docs/data-governance.md),
+# large binaries are NOT committed here. These rules pre-declare what will be annexed.
+*.nii        annex.largefiles=anything
+*.nii.gz     annex.largefiles=anything
+*.mgz        annex.largefiles=anything
+*.edat3      annex.largefiles=anything
+*.dcm        annex.largefiles=anything
+*.zip        annex.largefiles=anything
+*.dmg        annex.largefiles=anything
+*.pptx       annex.largefiles=largerthan=5mb
+*.mat        annex.largefiles=largerthan=5mb
+# text/code/docs/graph stay in git
+*.md         annex.largefiles=nothing
+*.json       annex.largefiles=nothing
+*.tsv        annex.largefiles=nothing
+*.py         annex.largefiles=nothing
+*.pdf        annex.largefiles=largerthan=5mb
