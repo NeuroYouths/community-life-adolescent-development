@@ -9,7 +9,9 @@ task-name: "ads-bisbas"
 edges:
   - {type: conforms-to, target: standard-ads-protocol}
   - {type: in-program, target: program-clad}
+  - {type: analyzed-by, target: cfa-sem}
   - {type: cross-project, target: "ads-glimmer:experiment-bisbas", role: inherited-from-parent}
+  - {type: cross-project, target: "ads-glimmer:instrument-bisbas", role: instrument}
 description: |
-  Reinforcement-sensitivity self-report (approach/inhibition), W1-3; BAS-D mediates CMI->violence. Instrument: Carver & White 1994 BIS/BAS. Inherited.
+  Reinforcement-sensitivity self-report (approach/inhibition), W1-3; BAS-D mediates CMI->violence (RQ1 mediation). Instrument: Carver & White 1994 BIS/BAS -- materials at ads-glimmer:instrument-bisbas (Box: BIS:BAS/ BIS_BAS.doc + BISBAS_scoring.pdf). Analyzed by cfa-sem (BAS-D indicator). Inherited.
 ---

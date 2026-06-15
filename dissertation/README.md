@@ -21,8 +21,7 @@ Graph node: `pub-eldamaty-2017-dissertation` (in [`../graph/publications/`](../g
   agendas, post-meeting form). PHI-free faculty documents.
 - [`monograph/`](monograph/) — the full dissertation PDF: `El_Damaty__Dissertation_2020.pdf` (154 pp,
   26.9 MB; pdfTeX-typeset). Recovered from the NeuroYouths Box (root). Public ProQuest-deposited monograph,
-  PHI-free. Committed to git for now; will migrate to git-annex with the other large binaries when annex is
-  wired (`*.pdf >5mb` pre-declared in `.gitattributes`). **Reported sample:** 141 enrolled (6 excluded at
+  PHI-free. Large binaries are managed by **DataLad + git-annex** (gitbare siblings + encrypted special remote, per `docs/data-governance.md`). The monograph is also committed directly to this GitHub mirror (26.9 MB, within limits); `*.pdf >5mb` is annex-routed in `.gitattributes` for the canonical DataLad dataset. **Reported sample:** 141 enrolled (6 excluded at
   baseline); per-wave imaging N 141/106/97; post-QC unique T1w 140/106/100; the striatal parcellation (RQ3)
   is built on Wave-1 resting-state only (9 stable bilateral parcels).
 

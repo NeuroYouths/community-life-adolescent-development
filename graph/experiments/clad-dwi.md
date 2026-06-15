@@ -11,5 +11,5 @@ edges:
   - {type: analyzed-by, target: clad-dwi-w4}
   - {type: in-program, target: program-clad}
 description: |
-  Wave-4 HARDI diffusion; seeded structural connectivity for the structure arm.
+  Wave-4 diffusion MRI as HARDI (High Angular Resolution Diffusion Imaging): many diffusion-encoding directions sampled on the sphere so crossing/complex fibre populations can be resolved per voxel (vs a single tensor). Wave-4 is MULTI-SHELL (multiple b-value shells = 'multiple spheres per voxel'), enabling MSMT-CSD multi-tissue modelling (mrtrix3); W1-3 was single-shell 80-direction b=1100. Provides the seeded structural-connectivity arm onto the striatal parcels. Analysis: clad-dwi-w4 (mrtrix3 FBA lineage).
 ---

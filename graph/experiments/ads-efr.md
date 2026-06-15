@@ -11,6 +11,7 @@ edges:
   - {type: analyzed-by, target: cfa-sem}
   - {type: in-program, target: program-clad}
   - {type: cross-project, target: "ads-glimmer:experiment-efr", role: inherited-from-parent}
+  - {type: cross-project, target: "ads-glimmer:instrument-emotion-recognition", role: instrument}
 description: |
-  Off-scanner emotion-recognition task (master sheet: ERT; CMI 'EFR') using NimStim faces (Tottenham 2009). Consolidated W1-2 ('Data Consolidation Status'; W3 not consolidated - possible gap). Bridges to W4 EmoFilm synchrony. Inherited.
+  Off-scanner emotion-recognition task (master sheet: ERT; CMI 'EFR') using NimStim faces (Tottenham 2009). ADMINISTERED at W1-3, but usable data were CONSOLIDATED only for W1-2 (per 'Data Consolidation Status') -- W3 is a consolidation gap, NOT a non-administration. Instrument + materials: ads-glimmer:instrument-emotion-recognition (NimStim; E-Prime on the stimulus computer). Bridges to W4 EmoFilm synchrony. Inherited.
 ---

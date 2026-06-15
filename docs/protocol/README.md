@@ -34,7 +34,5 @@ Confirmed against **`ADS-MASTER-SHEET.xlsx`** ("Data Consolidation Status" task�
 Exposure to violence (school + neighborhood), neighborhood structure, family structure/climate,
 and social-norm perceptions — the "Community Life" core driving the social-strain → violence cascade.
 
-> **Open item (needs your call):** the W1–3 scanner card + field manual list **EmoCountStroop**, not EmoFilm,
-> and EmoFilm appears only in the Wave-4 BIDS — so the evidence says **EmoFilm is a Wave-4 task**. This
-> conflicts with the PR comment ("EmoFilm w1-3 not 4"). Confirm and I'll finalize the wave attribution.
+> **Resolved (owner-confirmed + protocol printout):** **EmoCountStroop is the Wave-1–3 in-scanner affective task; EmoFilm is the Wave-4 task** — corroborated by the W1–3 scanner card/field manual, the Siemens TrioTim protocol printout, and the Wave-4 BIDS.
 > Exact instrument editions (neighborhood/family/violence-exposure scales) still to be pinned from the appendices.
