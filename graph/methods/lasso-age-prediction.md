@@ -5,6 +5,8 @@ name: "Ridge/LASSO age prediction [inherited]"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
 provenance-hash: sha256:5078393a28a5684de42c37d5f1d5d7a0afbdefe66f025cbd7203f9264b6b9837
+code: "code/analyses/cmi/ (glmnet ridge/elastic/LASSO age regression, LOOCV)"
+algorithm: "ridge/LASSO age prediction → CMI residual (glmnet 4.0-2)"
 tool: "glmnet (R)"
 version: "4.0-2"
 edges:

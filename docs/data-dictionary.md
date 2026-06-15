@@ -33,3 +33,26 @@ lineage (EmoFilm is an HCP-pulse replica), and **NICAP** — a separate 3rd-part
 SST). HCP-D + NICAP are external → metadata-only, not CLAD data.
 
 Full per-variable coding to be imported from the dictionary spreadsheet in the data pass.
+
+
+## FreeSurfer recon versions (edited / non-edited · modern / legacy)
+
+Distinguish the recon generations — analyses must state which they use:
+
+- **(A) Legacy FS5.3 / FSFAST-era + ANTs (Wave-1, 2016).** The original cortical-thickness / `ads56`
+  template line (`recon-all -3T -qcache`, GNU-parallel batch, 22 Jul 2016; `Parcellations/FreeSurfer5.3/`).
+  *fsfast* functional stream, not fMRIPrep.
+- **(B) Modern FS6.0.0 `recon-all` — the canonical W1–3 store (auto + a small EDITED subset).** Bulk recons
+  are **unedited auto FS6**; a hand-edited ground-truth subset exists (e.g. `149959-wave-001`, the IRR
+  reliability set, the Dissert-ToGo striatal-longitudinal dirs). Manual edits are tracked in
+  `ADS FreeSurfer QC.xlsx` (`NumBrainMaskEdits` + `NumWhiteMaskDel` + `NumWhiteMaskFill`); a **pre-edit**
+  stats snapshot is kept under `data/MRI/freesurfer/stats/**preedit/**`. Per-session edit map:
+  `w13-recons/edit-status.txt` (`<id>-wave-NNN  yes|no`).
+- **(C) Modern FastSurfer / FS7.4.1 — the re-derive set (auto only, W1–3).** Box annex
+  `ads-glimmer-annex/w13-fastsurfer/`; benchmarked vs (B) by `compare_fs6_vs_fastsurfer.py`.
+
+**Wave-4 recons are NOT edited — in fact W4 was never reconned in the legacy stores.** Only W1–3 have
+recons (and within those only the small hand-picked subset above is edited); the recon stores
+(`edit-status.txt`, `w13-recons/`, `w13-fastsurfer`) stop at wave-003/003a. W4 is treated as raw BIDS input
+flagged RE-DERIVE. ("fsfast vs not": the *structural* recon is `recon-all`; the W1–3 *functional* analysis was
+FSFAST — a separate FreeSurfer stream — whereas the modern re-derive is fMRIPrep.)

@@ -5,6 +5,10 @@ name: "fMRIPrep (Wave-4 params)"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
 provenance-hash: sha256:f1368a1c0591fadfebe225efe893d90de5f0f6ac2a5d48687fd3adc2b6dd7acd
+code: "nipype/fmriprep_confounds.py (fMRIPrep container orchestrated in legacy-ants/main.sh — re-derive target; W1-3 used FSFAST)"
+code-repo: "github.com/hebbianloop/ads-glimmer-code"
+code-commit: "cb76a3b31c9408af80e0d00c697ac1db4e8a76f7"
+algorithm: "fMRIPrep 23.2.0 preproc + confounds"
 tool: "fMRIPrep"
 version: "23.x"
 parameters: {output-space: "clad-wave4-sst", multiband: "yes (HCP-pulse)"}

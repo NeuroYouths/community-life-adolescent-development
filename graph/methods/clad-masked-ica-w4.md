@@ -5,6 +5,11 @@ name: "Masked group-ICA striatal parcellation (Wave-4)"
 created: 2026-06-11T00:00:00+00:00
 modified: 2026-06-11T00:00:00+00:00
 provenance-hash: sha256:91e16decd8c6688fc0773cf5f5df1432424f5bb65b8b1d3bc368c34ccc242ad3
+code: "analysis/calc_stableICs_munkres.py; make_Parcels.py; calc_critPearson.py (FSL MELODIC mICA legs)"
+code-repo: "github.com/hebbianloop/ads-glimmer-code"
+code-commit: "cb76a3b31c9408af80e0d00c697ac1db4e8a76f7"
+code-legacy: "ads-glimmer-staging/vfd-tranche-a/striatal-longitudinal-parcellation/parcels/melodic/create_parc*.sh"
+algorithm: "mask-then-ICA (MELODIC) inside the striatal mask; split-half order-stability"
 tool: "MELODIC"
 version: "FSL 6.0"
 edges:
