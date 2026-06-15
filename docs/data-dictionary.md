@@ -43,7 +43,7 @@ Distinguish the recon generations — analyses must state which they use:
   template line (`recon-all -3T -qcache`, GNU-parallel batch, 22 Jul 2016; `Parcellations/FreeSurfer5.3/`).
   *fsfast* functional stream, not fMRIPrep.
 - **(B) Modern FS6.0.0 `recon-all` — the canonical W1–3 store (auto + a small EDITED subset).** Bulk recons
-  are **unedited auto FS6**; a hand-edited ground-truth subset exists (e.g. `149959-wave-001`, the IRR
+  are **unedited auto FS6**; a hand-edited ground-truth subset exists (the IRR
   reliability set, the Dissert-ToGo striatal-longitudinal dirs). Manual edits are tracked in
   `ADS FreeSurfer QC.xlsx` (`NumBrainMaskEdits` + `NumWhiteMaskDel` + `NumWhiteMaskFill`); a **pre-edit**
   stats snapshot is kept under `data/MRI/freesurfer/stats/**preedit/**`. Per-session edit map:
