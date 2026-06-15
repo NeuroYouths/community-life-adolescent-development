@@ -60,7 +60,7 @@ Waves 1–3 BIDS 142 subjects.
 ## Protocols / grant / IRB
 | Class | Where | Tier | Status |
 |---|---|---|---|
-| NIJ protocol (2016-R2-CX-0019) | `nij-2016-r2-cx-0019_protocol.pdf` (Box; mirrored in ads-glimmer `materials/instruments/instrument-siemens-prisma-w4/`) — NOTE the local `NIJ_protocol_12-20-19.pdf` is the Siemens **scanner manual**, not the study protocol | OPEN | ✅ |
+| NIJ protocol (2016-R2-CX-0019) | `nij-2016-r2-cx-0019_protocol.pdf` (Box; in-repo at `materials/wave4-mri/`) — NOTE the local `NIJ_protocol_12-20-19.pdf` is the Siemens **scanner manual**, not the study protocol | OPEN | ✅ |
 | NIJ program narratives + budgets | voxel-forge-duo `/Volumes/neuroyouths/2016-R2-CX-0019/` | OPEN | 🔴 |
 | IRB approval letter | `~/neuroscience/ADS/2018.06.20.IRB.Letter.2016-R2-CX-0019.pdf` | OPEN | ✅ |
 | W4 budget | `~/neuroscience/ADS/NIJ-ADS Wave 4_ Budget*.xlsx` | OPEN | ✅ |
