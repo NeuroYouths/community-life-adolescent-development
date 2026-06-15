@@ -4,7 +4,7 @@
 in Emerging Adulthood*
 **Author:** Shady El Damaty · Interdisciplinary Program in Neuroscience, Georgetown University
 **Defended:** 17 May 2017
-**Advisor:** John W. VanMeter · **Co-mentors:** Diana H. Fishbein (Penn State), Emma J. Rose
+**Advisor:** John W. VanMeter (now Ashley S. VanMeter; she/her) · **Co-mentors:** Diana H. Fishbein (Penn State), Emma J. Rose
 **Committee:** Chandan Vaidya (chair), Jennifer Woolard, Mary Ann Dutton
 **Funding:** NIJ 2016-R2-CX-0019 (OJP 2016-90111-DC-IJ); NIH/NIAAA R01AA019983; NIH/NCATS KL2RR031974; NIH/NICHD P30HD040677
 
@@ -19,9 +19,12 @@ Graph node: `pub-eldamaty-2017-dissertation` (in [`../graph/publications/`](../g
 ## Contents
 - [`defense/`](defense/) — committee/defense paperwork (signed meeting form, proposal & reviewer forms,
   agendas, post-meeting form). PHI-free faculty documents.
-- [`monograph/`](monograph/) — the full dissertation PDF. **GAP:** not recovered locally; source is
-  `/Volumes/spare/phd-dissertation/` (unmounted) or the Georgetown / ProQuest repository. Placeholder
-  until recovered.
+- [`monograph/`](monograph/) — the full dissertation PDF: `El_Damaty__Dissertation_2020.pdf` (154 pp,
+  26.9 MB; pdfTeX-typeset). Recovered from the NeuroYouths Box (root). Public ProQuest-deposited monograph,
+  PHI-free. Committed to git for now; will migrate to git-annex with the other large binaries when annex is
+  wired (`*.pdf >5mb` pre-declared in `.gitattributes`). **Reported sample:** 141 enrolled (6 excluded at
+  baseline); per-wave imaging N 141/106/97; post-QC unique T1w 140/106/100; the striatal parcellation (RQ3)
+  is built on Wave-1 resting-state only (9 stable bilateral parcels).
 
 ## Deferred (large binary)
 - **`17May_Slides.pptx`** — the 63 MB defense presentation. Not committed in the skeleton pass; will be
