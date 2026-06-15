@@ -35,4 +35,5 @@ description: |
   caudate <-> DLPFC/IFG. Emotion axis: ventral/limbic striatum <-> vmPFC/amygdala (EmoFilm ISC). STRUCTURE arm
   spans DWI AND T1w/T2w myelin (T2 gray/white boundary). W1-3 behavior (inherited from ADS) predicts the W4
   imaging/connectivity phenotypes; this is the forward-inheritance design.
+  DISSERTATION CONTEXT (negative result): the 2017 monograph Ch4 found neural (volume/FA/connectivity) mediation ONLY for the inhibitory-control factor; NO reliable MR indicator of the EFR or risk/reward latent factors (p.98). The emotion-axis convergence here is a NEW forward hypothesis -- W4 EmoFilm + improved methods revisit what W1-3 could not detect -- NOT a dissertation finding. W4 diffusion is multi-shell HARDI (multiple b-value shells modelling crossing fibres per voxel; see clad-dwi).
 ---

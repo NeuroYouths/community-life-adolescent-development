@@ -28,7 +28,7 @@ Project (HCP / HCP-D)** and **NICAP** are the comparison anchors. (Sub-concept `
 
 Both axes are recovered by **multimodal striatal parcellation** (functional group-ICA *fused with*
 seed-based diffusion connectivity); individual latent-factor deviation predicts the matching parcel's
-connectivity; and these predict **vulnerability outcomes** — consistent with the dissertation finding
+connectivity; and these predict **vulnerability outcomes** — a NEW forward hypothesis (status: under-investigation; NOT a dissertation finding — the 2017 monograph Ch4 connectivity is age-covariant + inhibitory-control mediation only)
 that baseline **medial-caudate↔prefrontal (DLPFC/SPL, mPFC)** connectivity predicts substance-use
 initiation 18 months later and inversely tracks violence proneness.
 
@@ -63,8 +63,8 @@ Analysis: `code/analyses/violence-cascade/` → `data/derivatives/violence-casca
 Masked group-ICA functional parcellation of the striatum + split-half reproducibility, **fused with
 seed-based diffusion connectivity**; recovers BOTH limbic (emotion) and associative (control) parcels;
 relate medial-caudate↔prefrontal connectivity to outcomes. **Note: the parcellation was performed on
-WAVES 1–3** (parent-canonical in ADS); **Wave-4 was incomplete and on a different scanner**, so the CLAD
-question is *validating and transferring* the W1–3 parcels to W4 (see RQ7). **Output: `eldamaty2020c` /
+Wave-1 resting-state** (parent-canonical in ADS; 2017 dissertation); **Wave-4 was incomplete and on a different scanner**, so the CLAD
+question is *validating and transferring* the Wave-1 parcels to W4 (see RQ7). **Output: `eldamaty2020c` /
 OHBM·CCN·FLUX — draft.** Analysis: `code/analyses/striatal-parcellation-multimodal/` → `data/derivatives/striatal-multimodal-parcels/`.
 
 ### RQ4 — EFR → EmoFilm synchrony (emotion-axis bridge) · `concept-emofilm-synchrony`
@@ -101,8 +101,8 @@ Each dissertation/CMI claim, the method that produced it, and the publication no
 | **ICLF ↑ with age β=0.72** (p<.001); CPT d′=0.65, Hit-RT-SD=−0.91 | `cfa-sem` (CPT indicators) | `pub-eldamaty-2022-cmi` |
 | **ICLF → −RRLF (−0.22, p<.031)**; ICLF → +ENLF (0.55) — Maturational-Imbalance | `cfa-sem` (SEM) | `pub-eldamaty-2022-cmi` |
 | **CMI → BAS-D → DUSI-VP** mediation (indirect −0.073 p=.032; direct −0.597) | `cfa-sem` (mediation) | `pub-eldamaty-2022-cmi` |
-| Baseline **medial-caudate↔DLPFC/SPL** connectivity higher in future substance users; **↔mPFC** protective vs violence | `clad-masked-ica-w4` ← `ads-glimmer:method-striatum-group-ica`; `conn` | `pub-eldamaty-striatal-parcellation` |
-| Striatal parcels reproducible (split-half, k≈5/9) — **W1–3** | `ads-glimmer:method-striatum-group-ica` + `split-half-reproducibility` | `pub-eldamaty-striatal-parcellation` |
+| *[HYPOTHESIS — not in dissertation]* baseline **medial-caudate↔DLPFC/SPL** higher in future substance users; **↔mPFC** protective vs violence | `clad-masked-ica-w4`; `conn` (new-program rsfMRI) | `pub-corticostriatal-convergence` (hypothesis) |
+| Striatal parcels reproducible (split-half) at orders 3/5/9; **9 selected** for the dissertation — **Wave-1** | `ads-glimmer:method-striatum-group-ica` + `split-half-reproducibility` | `pub-eldamaty-striatal-parcellation` |
 
 ## Key dissertation findings (parsed from `eldamaty2020b` + the rsfMRI drafts)
 Anchors the spine; full provenance in the `graph/` publication + finding nodes.
@@ -120,9 +120,7 @@ Anchors the spine; full provenance in the `graph/` publication + finding nodes.
 - **CMI ↔ outcomes**: CMI correlates with DUSI violence proneness (R=−0.28), substance use (−0.20),
   health risk (−0.16), IQ (+0.20). **Mediation** CMI → BAS-D → DUSI-VP: indirect −0.073 (p=.032),
   direct −0.597 (p<.001), total −0.449. Advanced-puberty **males** show lower CMI (sex×PDS, p<.001).
-- **Striatal rsfMRI**: masked group-ICA → reproducible striatal parcels (primary k≈5, fine to ~8–10
-  via split-half); baseline **medial-caudate↔DLPFC/SPL** connectivity higher in future substance users;
-  **medial-caudate↔mPFC** connectivity protective, inversely related to violence proneness.
+- **Striatal rsfMRI**: masked group-ICA → reproducible striatal parcels at orders **3, 5, and 9** (split-half); the **9-parcel** solution was selected for the dissertation (most interpretable). *(Forward hypothesis, NOT a dissertation finding:* baseline medial-caudate↔DLPFC/SPL higher in future substance users; ↔mPFC protective vs violence — new-program rsfMRI.)
 
 ## Constructs & instruments
 CPT (inhibitory control), Wheel of Fortune + Temporal Discounting (risk/reward), Emotional Face

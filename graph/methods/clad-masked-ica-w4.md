@@ -11,5 +11,5 @@ edges:
   - {type: in-program, target: program-clad}
   - {type: cross-project, target: "ads-glimmer:method-striatum-group-ica", role: adapts-from-parent}
 description: |
-  W4 masked group-ICA; validates/applies the W1-3 striatal parcels to the (incomplete, different-scanner) W4 rest data.
+  W4 masked group-ICA; validates/applies the Wave-1 striatal parcels to the (incomplete, different-scanner) W4 rest data.
 ---
